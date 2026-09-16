@@ -7,8 +7,19 @@
 > **Superseded numbers.** An earlier run reported PR-AUC figures for
 > RandomForest and XGBoost that were produced by training code which was
 > never saved to a file and cannot be reproduced. Those figures are void
-> and must not appear in slides, the report, or any pitch material. The
-> metrics in this document are the only citable ones.
+> and must not appear in slides, the report, or any pitch material.
+>
+> **Also void: the single-fold numbers below (§4), PR-AUC/F1-macro
+> 0.8257/0.7640 (RandomForest) and 0.7504/0.8307 (XGBoost).** They are
+> `fold 0` of the same 5-fold split, not a cross-validated estimate, and
+> overstate precision while understating recall relative to the 5-fold
+> mean. The only citable metrics are in
+> [`docs/evaluation_cv.json`](evaluation_cv.json), produced by
+> `python app/evaluate_trigger_cv.py`, which reruns this same leak-safe
+> training set through 5-fold `StratifiedGroupKFold` plus forward-in-time
+> (2024, 2025) checks. Summary: RandomForest PR-AUC 0.798 ± 0.086 /
+> F1-macro 0.813 ± 0.061; XGBoost PR-AUC 0.792 ± 0.095 / F1-macro
+> 0.864 ± 0.059 (mean ± sample SD, 5 folds).
 
 ---
 
@@ -31,7 +42,7 @@ equals exactly the list above, so the leak cannot silently return.
 | source | positive cell-hours |
 |---|---|
 | `threshold` | 2,459 |
-| `verified_incident` | 168 |
+| `verified_incident` | 168 (7 dated incidents expanded to 168 incident-tagged cell-hours) |
 | **total positives** | **2,627** |
 | negatives (sampled 10:1) | 26,270 |
 | **training set** | **28,897** (9.09% positive) |
@@ -39,18 +50,18 @@ equals exactly the list above, so the leak cannot silently return.
 Rainfall threshold: `precip_1hr >= 20 mm` OR
 `precip_3hr >= 60 mm`, AND `slope_mean >= 15°`
 (Dikshit & Satyam 2019, Kalimpong — see `app/labelling.py`).
-ASDMA vulnerable cells bypass the slope filter; verified incidents are
-marked positive for all 24 hours of the incident date.
+Cells containing a listed hazard site (news and official sources, per-row
+source in `data/raw/asdma_vulnerable_locations.csv`) bypass the slope
+filter; dated incidents are marked positive for all 24 hours of the
+incident date.
 
-### Verified-incident coverage
+### Dated-incident coverage
 
-**7 of 8 verified incidents used**; the following were excluded
-because they fall outside the weather record (2018-01-01 → 2025-12-31):
+**7 of 8 dated incidents used** (each expanded to 24 incident-tagged
+cell-hours, 168 total); the following was excluded because it falls
+outside the weather record (2018-01-01 → 2025-12-31):
 
 - **16 Jul 2026 — Lal Ganesh** — excluded, post-dates weather record
-
-Specifically: 7 of 8 verified incidents used; 16 Jul 2026 Lal Ganesh
-excluded, post-dates weather record.
 
 ## 3. Split method — episode-grouped, NOT a temporal cutoff
 
@@ -76,10 +87,16 @@ the script raises rather than training if any group straddles the split).
 
 ## 4. Results
 
-| model | PR-AUC | F1-macro |
+**VOID — single fold, not cross-validated.** The table below is `fold 0` of the
+5-fold split described in §3, kept for provenance only. Do not cite these
+numbers; see the box at the top of this document and
+[`docs/evaluation_cv.json`](evaluation_cv.json) for the citable 5-fold
+mean ± sd and forward-in-time checks.
+
+| model | PR-AUC (fold 0 — VOID) | F1-macro (fold 0 — VOID) |
 |---|---|---|
-| RandomForest (`n_estimators=100`, `class_weight='balanced'`) | **0.8257** | 0.7640 |
-| XGBoost (`n_estimators=150`, `max_depth=6`, `lr=0.05`, `scale_pos_weight=9.9990`) | **0.7504** | 0.8307 |
+| RandomForest (`n_estimators=100`, `class_weight='balanced'`) | ~~0.8257~~ | ~~0.7640~~ |
+| XGBoost (`n_estimators=150`, `max_depth=6`, `lr=0.05`, `scale_pos_weight=9.9990`) | ~~0.7504~~ | ~~0.8307~~ |
 
 Both models trained on **identical** train/test indices.
 Metrics are PR-AUC + F1-macro. ROC-AUC is deliberately not reported
@@ -128,9 +145,9 @@ third clipped off.
   scores onto the grid by `grid_id` and matched **0 of 904** rows; the
   subsequent `.fillna(0.0)` painted every cell 0.0 risk. The Streamlit map
   never displayed a real prediction once it was wired to real scores.
-- **ASDMA and verified-incident labels.** `add_asdma_positives()` spatially
-  joins against the grid, so it returned placeholder ids that matched no
-  feature rows. **ASDMA vulnerable cells and all verified incidents
+- **Listed-hazard-site and dated-incident labels.** `add_asdma_positives()`
+  spatially joins against the grid, so it returned placeholder ids that
+  matched no feature rows. **Listed hazard sites and all dated incidents
   contributed ZERO positives.** Any model trained in this window saw
   rainfall-threshold labels only, regardless of what its log claimed.
 - **Any PR-AUC / F1 figure produced in this window**, and any episode or
@@ -256,7 +273,7 @@ Measured against the only ground truth available:
 | group | cells | slope_mean (median) | slope_max (median) |
 |---|---|---|---|
 | containing a documented incident | 6 | **6.0°** | 27.6° |
-| containing an ASDMA vulnerable location | 34 | **4.5°** | 30.4° |
+| containing a listed hazard site | 34 | **4.5°** | 30.4° |
 | the district as a whole | 904 | **9.4°** | 30.9° |
 
 **Every documented landslide location sits in a cell that is flatter than the
@@ -269,7 +286,7 @@ slope_mean 10.52° but slope_max 45.16°. The failure happens on a local hill
 cut or guard wall that a 1 km average erases.
 
 Switching to `slope_max` does **not** fix it and was rejected on the evidence:
-district-wide slope_max median is 30.9° versus 30.4° for ASDMA cells, so it
+district-wide slope_max median is 30.9° versus 30.4° for listed-hazard-site cells, so it
 discriminates no better — it just shifts every cell upward.
 
 Consequence before the fix, with the slope-only layer:
@@ -285,8 +302,8 @@ rendered a fatal landslide site green on the day five people died.
 ### 8.2 The floor
 
     susceptibility = max(terrain-derived class,
-                         "High" if the cell contains an ASDMA vulnerable
-                                   location or a verified incident)
+                         "High" if the cell contains a listed hazard site
+                                   OR a dated-incident cell)
 
 **34 of 904 cells (3.8%) are flagged; 31 are actually raised** (3 were already
 High or above). The floor only ever raises, never lowers.
@@ -304,26 +321,29 @@ incident dates.
 
 ### 8.3 The circularity — NOT metric leakage
 
-ASDMA locations are used in two places:
+Listed hazard sites are used in two places:
 
-1. **Labelling** (`app/labelling.py`) — ASDMA cells bypass the slope filter,
-   so a rainfall trigger there produces a positive.
+1. **Labelling** (`app/labelling.py`) — cells containing a listed hazard
+   site bypass the slope filter, so a rainfall trigger there produces a
+   positive.
 2. **The susceptibility floor** (this section).
 
 A sharp reader will spot that and should be given the honest answer:
 
-**This does not affect PR-AUC 0.8257 or F1-macro 0.7640.** Susceptibility is a
+**This does not affect the citable PR-AUC/F1-macro figures in
+[`docs/evaluation_cv.json`](evaluation_cv.json).** Susceptibility is a
 *static display-layer gate* applied to the model's output — it is not a model
 input. The five model features are `soil_moisture_0_7`, `soil_moisture_7_28`,
 `temp_c`, `api_3d`, `api_7d`, all weather-point-level, and
 `train_both()` asserts `X.columns` equals exactly that list. The model never
-sees susceptibility, ASDMA membership, slope, or elevation. Changing the
-multipliers or the floor changes the rendered map and changes nothing about
-the reported metrics.
+sees susceptibility, listed-hazard-site membership, slope, or elevation.
+Changing the multipliers or the floor changes the rendered map and changes
+nothing about the reported metrics.
 
 **What it does mean, and what must be disclosed:** a cell can display high risk
-because it is on Assam's official vulnerable-locations list, not because the
-model or the DEM inferred it. That is stated in the Streamlit sidebar under
+because it contains a listed hazard site (news and official sources, per-row
+source in `data/raw/asdma_vulnerable_locations.csv`), not because the model
+or the DEM inferred it. That is stated in the Streamlit sidebar under
 "How to read this map" and in the map caption. It is not buried.
 
 The defensible framing: the system combines a *learned dynamic trigger* with a
@@ -332,15 +352,15 @@ terrain*. That is how operational early-warning systems are normally built —
 the objection would be if we claimed the model discovered these locations. We
 do not.
 
-### 8.4 Verified validation claim (checked, not assumed)
+### 8.4 Dated-incident validation claim (checked, not assumed)
 
-All 8 verified incident points fall in **6 unique grid cells**. All 6 are
-inside ASDMA's 34 cells:
+All 8 dated incident points fall in **6 unique grid cells**. All 6 are
+inside the 34 listed-hazard-site cells:
 
 ```
-verified cells : KM_R013_C004  KM_R016_C013  KM_R017_C008
+incident cells : KM_R013_C004  KM_R016_C013  KM_R017_C008
                  KM_R018_C012  KM_R020_C016  KM_R020_C018
-subset of ASDMA cells : True
+subset of listed-hazard-site cells : True
 ```
 
 Restricting to the 6 incidents with an explicit death count gives **5 unique
@@ -350,8 +370,9 @@ cells** (`KM_R013_C004`, `KM_R017_C008`, `KM_R018_C012`, `KM_R020_C016`,
 **Precise wording for the pitch** (the loose version conflates two counts):
 
 > All 6 grid cells containing a documented landslide or flood incident —
-> including all 5 cells where a fatal landslide occurred — were already on
-> ASDMA's officially identified vulnerable-locations list.
+> including all 5 cells where a fatal landslide occurred — were already
+> among the listed hazard sites (news and official sources, per-row source
+> in `data/raw/asdma_vulnerable_locations.csv`).
 
 Note `KM_R017_C008` alone hosted three separate documented incidents
 (Dhirenpara 2023-06-17, Krishnanagar/Lal Ganesh 2024-05-29, Lal Ganesh

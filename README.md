@@ -19,7 +19,8 @@ ahead of the event.
 PRAVAH predicts rainfall-triggered flash-flood and slope-failure risk at **1 km grid
 resolution** for the **Kamrup Metropolitan district** of Assam (Guwahati), and surfaces it
 as an interactive risk map with a ranked early-warning list. The pilot grid covers **904
-cells**, and risk can be rendered for any date from **2018-01-01 to 2025-12-31**. It
+boundary-clipped cells (~796 km²)**, and risk can be rendered for any date from
+**2018-01-01 to 2025-12-31**. It
 replaces the current district-level, after-the-fact warning paradigm with cell-level,
 proactive alerts.
 
@@ -32,8 +33,9 @@ risk[cell, date] = trigger_prob[weather_point(cell), date] * susceptibility_mult
 ```
 
 - **Static susceptibility** is terrain-derived from 1 km mean slope, then *floored* to at
-  least "High" for any cell containing an ASDMA officially identified vulnerable location
-  or a verified historical incident. The class is mapped to a team-assigned multiplier
+  least "High" for any cell containing a listed hazard site (news and official sources,
+  per-row source in `data/raw/asdma_vulnerable_locations.csv`) **or** a dated-incident cell.
+  The class is mapped to a team-assigned multiplier
   (Low 0.20 / Moderate 0.45 / High 0.70 / Very High 0.90).
 - **Dynamic trigger** is a scikit-learn RandomForest (`n_estimators=100`,
   `class_weight='balanced'`) trained on five weather-point-level features —
@@ -45,35 +47,45 @@ risk[cell, date] = trigger_prob[weather_point(cell), date] * susceptibility_mult
 
 ## Results and validation
 
-Metrics reported are **PR-AUC** and **F1-macro**. ROC-AUC is deliberately not reported — it
-is misleading at the ~9% positive-class rate of this dataset. Full detail, seed, and split
-code are in [`docs/model_training_log.md`](docs/model_training_log.md).
+Metrics reported are **PR-AUC** and **F1-macro**, from 5-fold `StratifiedGroupKFold`
+cross-validation over storm-episode groups (61 storm episodes, 127 groups) — reproducible by
+running `python app/evaluate_trigger_cv.py`. ROC-AUC is deliberately not reported — it is
+misleading at the ~9% positive-class rate of this dataset. Fold-by-fold numbers, package
+versions, and the commit this was run against are in
+[`docs/evaluation_cv.json`](docs/evaluation_cv.json); label and split narrative is in
+[`docs/model_training_log.md`](docs/model_training_log.md).
+
+> **Void figures — do not cite.** PR-AUC/F1-macro of 0.8257 / 0.7640 (RandomForest) and
+> 0.7504 / 0.8307 (XGBoost), which previously appeared here, were read off a single fold
+> (fold 0) of one split, not a cross-validated estimate. They are superseded by the 5-fold
+> means below; see `docs/evaluation_cv.json` for the reproducible source of every metric.
 
 **Split — episode-grouped, not a temporal cutoff.** Rainfall-threshold labels make
 temporally adjacent hours near-duplicates, so runs of active hours are merged into storm
-episodes (61 episodes) and the group key is `(year, episode_id)`.
-`StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)` is used, with fold 0 held
-out as the test set. **0 episode groups appear on both sides** (asserted in code).
+episodes and the group key is `(year, episode_id)`; `StratifiedGroupKFold` keeps whole
+episodes on one side of each fold, so **0 episode groups appear on both sides** (asserted
+in code).
 
-| | rows | episodes | positive rate |
-|---|---|---|---|
-| Train | 23,120 | 103 | 9.09% |
-| Test | 5,777 | 24 | 9.09% |
-
-| Model | PR-AUC | F1-macro |
+| Model | PR-AUC (mean ± sd, 5-fold) | F1-macro (mean ± sd, 5-fold) |
 |---|---|---|
-| **RandomForest** (shipped — won on PR-AUC) | **0.8257** | **0.7640** |
-| XGBoost | 0.7504 | 0.8307 |
+| **RandomForest** (shipped) | **0.798 ± 0.086** | 0.813 ± 0.061 |
+| XGBoost | 0.792 ± 0.095 | **0.864 ± 0.059** |
 
-Labels: 2,627 positive cell-hours (2,459 rainfall-threshold + 168 verified-incident)
-against 26,270 stratified negatives (10:1), for a 28,897-row training set. 7 of 8 verified
-incidents are inside the weather record and used; the 16 Jul 2026 Lal Ganesh incident is
-excluded because it post-dates the record.
+Forward-in-time checks (train on years < Y, test on year Y) show both models degrading on
+2025, the sparsest test year (RandomForest PR-AUC 0.552, XGBoost 0.590), while 2024 stays
+close to the CV mean — see `temporal_2024` / `temporal_2025` in `docs/evaluation_cv.json`.
 
-**ASDMA-overlap validation finding.** The official landslide-vulnerability assessment
-underlying ASDMA's list dates to 2012-15 and was publicly reasserted in May 2022 — years
-before five of the six fatal incidents in our validation set. All 6 incident-containing
-grid cells fall within ASDMA's identified vulnerable zones.
+Labels: 2,627 positive cell-hours (2,459 rainfall-threshold + 7 dated incidents expanded to
+168 incident-tagged cell-hours) against 26,270 stratified negatives (10:1), for a
+28,897-row training set. 7 of 8 dated incidents are inside the weather record and used; the
+16 Jul 2026 Lal Ganesh incident is excluded because it post-dates the record.
+
+**Hazard-site overlap finding.** The listed hazard sites (news and official sources,
+per-row source in `data/raw/asdma_vulnerable_locations.csv`) are mostly reported from
+2022-23, before five of the six fatal incidents in our validation set. All 6
+incident-containing grid cells fall within the listed hazard sites' cells — the
+susceptibility floor (§8, `docs/model_training_log.md`) raises a cell to "High" if it
+contains a listed hazard site **or** a dated-incident cell, whichever applies.
 
 ## Setup
 
