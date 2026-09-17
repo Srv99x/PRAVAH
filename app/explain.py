@@ -468,14 +468,14 @@ def build_summary(
 
     if trigger_probability == 0.0:
         return (
-            "No elevated risk: the model's trigger probability is 0.0% "
-            "for this date, so the final risk is 0.0."
+            "No elevated priority: the dynamic trigger is 0.00 "
+            "for this date, so the final priority index is 0.0."
         )
 
     return (
-        f"{severity.upper()} RISK: This cell is affected by "
-        f"{susceptibility_reason} and has a {risk_percent:.1f}% "
-        f"dynamic trigger probability."
+        f"{severity.upper()} PRIORITY: This cell is affected by "
+        f"{susceptibility_reason} and has a {trigger_probability:.2f} "
+        f"dynamic trigger."
     )
 
 

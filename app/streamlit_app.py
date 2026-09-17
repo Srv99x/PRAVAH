@@ -560,8 +560,8 @@ else:
         )
 
         metric2.metric(
-            "Trigger Probability",
-            f"{explanation['trigger_prob']:.1%}",
+            "Dynamic trigger",
+            f"{explanation['trigger_prob']:.2f}",
         )
 
         metric3.metric(
@@ -606,14 +606,14 @@ else:
 
         st.caption(
             f"Priority-index calculation: "
-            f"{explanation['trigger_prob']:.1%} trigger probability × "
+            f"{explanation['trigger_prob']:.2f} dynamic trigger × "
             f"{explanation['susceptibility_multiplier']:.2f} susceptibility "
             f"multiplier = {explanation['final_risk_score']:.2f} priority index."
         )
 
 st.caption(
-    "**Priority index = RandomForest trigger probability × susceptibility "
-    "multiplier**, shown on a 0.00–1.00 scale (not a calibrated probability). "
+    "**Priority index = RandomForest dynamic trigger × susceptibility "
+    "multiplier**, shown on a 0.00–1.00 scale. "
     "Susceptibility is terrain-derived (SRTM slope) and **floored by ASDMA's "
     "officially identified vulnerable locations** — 34 of 904 cells are raised "
     "to at least *High* on that basis. Multipliers are team-assigned weights "
