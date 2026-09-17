@@ -93,6 +93,25 @@ contains a listed hazard site **or** a dated-incident cell, whichever applies.
 pip install -r requirements.txt
 ```
 
+## Getting the district boundary
+
+`data/raw/boundaries/kamrup_metropolitan.geojson` is **not committed** to
+this repository. It derives from [GADM](https://gadm.org) (v4.1, India,
+admin level 2, feature `GID_2 = IND.4.15_1`) — GADM data is free to use for
+academic and non-commercial purposes but [may not be
+redistributed](https://gadm.org/license.html), which is why the file isn't
+checked in. Every teammate fetches their own copy:
+
+```bash
+python scripts/fetch_boundary.py
+```
+
+This downloads GADM's India admin-level-2 dataset, filters it to Kamrup
+Metropolitan, and writes `data/raw/boundaries/kamrup_metropolitan.geojson`.
+Grid generation (`app.grid_utils.generate_grid`, notebook
+`02_grid.ipynb`) raises a clear `FileNotFoundError` pointing back to this
+command if the boundary file is missing.
+
 ## Regenerating the data
 
 Run from the repository root, in order:

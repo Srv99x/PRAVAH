@@ -1,6 +1,45 @@
+from pathlib import Path
+
 import numpy as np
 import geopandas as gpd
 from shapely.geometry import box
+
+DEFAULT_BOUNDARY_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "data" / "raw" / "boundaries" / "kamrup_metropolitan.geojson"
+)
+
+
+def load_boundary(path=DEFAULT_BOUNDARY_PATH):
+    """
+    Load the Kamrup Metropolitan district boundary.
+
+    This file is NOT committed to the repository: it derives from GADM
+    (https://gadm.org), whose data is free for academic/non-commercial use
+    but may not be redistributed. Every teammate fetches their own copy
+    with `python scripts/fetch_boundary.py` (see README.md, "Getting the
+    district boundary").
+
+    Parameters
+    ----------
+    path : str or Path
+        Boundary GeoJSON path. Defaults to
+        data/raw/boundaries/kamrup_metropolitan.geojson.
+
+    Returns
+    -------
+    geopandas.GeoDataFrame
+    """
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(
+            f"District boundary not found at {path}.\n\n"
+            "This file is not committed to the repo -- it derives from "
+            "GADM, whose data may not be redistributed (see README.md, "
+            "'Getting the district boundary'). Fetch your own copy with:\n\n"
+            "    python scripts/fetch_boundary.py\n"
+        )
+    return gpd.read_file(path)
 
 
 def generate_grid(boundary_gdf, cell_size_m=1000, metric_crs="EPSG:32646"):
