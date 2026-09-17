@@ -11,6 +11,10 @@ data/processed/*
 !data/processed/missing_terrain_cells.json
 !data/raw/asdma_vulnerable_locations.csv
 !data/raw/verified_incidents.csv
+!data/raw/boundaries/
+data/raw/boundaries/*
+!data/raw/boundaries/*.geojson
+!data/raw/boundaries/.gitkeep
 __pycache__/
 .ipynb_checkpoints/
 *.tif
