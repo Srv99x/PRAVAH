@@ -224,7 +224,7 @@ def build_display_gdf(target_date) -> gpd.GeoDataFrame:
     """Static grid + this date's risk, with severity bands and No-Data cells."""
     gdf = load_static().copy()
     gdf["risk_probability"] = risk_for_date(target_date)["risk"].to_numpy()
-    gdf["risk_pct"] = (gdf["risk_probability"] * 100).round(1)
+    gdf["priority_index"] = gdf["risk_probability"].round(2)
 
     gdf["severity"] = pd.cut(
         gdf["risk_probability"], bins=RISK_BINS, labels=RISK_LABELS, right=False
@@ -234,7 +234,7 @@ def build_display_gdf(target_date) -> gpd.GeoDataFrame:
     # Cells with no DEM coverage have no susceptibility class, so their risk is
     # undefined rather than low — render grey, not green.
     gdf.loc[gdf["no_dem"], "severity"] = "No Data"
-    gdf.loc[gdf["no_dem"], ["risk_probability", "risk_pct"]] = np.nan
+    gdf.loc[gdf["no_dem"], ["risk_probability", "priority_index"]] = np.nan
 
     return gdf
 
@@ -293,9 +293,9 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
             "type": "Feature",
             "geometry": row["geometry"].__geo_interface__,
             "properties": {
-                "grid_id":      row["grid_id"],
-                "risk_pct":     float(row["risk_pct"]),
-                "severity":     str(row["severity"]),
+                "grid_id":         row["grid_id"],
+                "priority_index":  float(row["priority_index"]),
+                "severity":        str(row["severity"]),
                 "lat":          float(row["centroid_lat"]),
                 "lon":          float(row["centroid_lon"]),
                 # Pre-computed style — lambda below reads these, captures nothing
@@ -315,14 +315,14 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
             "fillOpacity": feat["properties"]["fillOpacity"],
         },
         tooltip=folium.GeoJsonTooltip(
-            fields=["grid_id", "risk_pct", "severity"],
-            aliases=["Grid ID", "Risk %", "Severity"],
+            fields=["grid_id", "priority_index", "severity"],
+            aliases=["Grid ID", "Priority index", "Severity"],
             localize=True,
             sticky=True,
         ),
         popup=folium.GeoJsonPopup(
-            fields=["grid_id", "risk_pct", "severity", "lat", "lon"],
-            aliases=["Grid ID", "Risk %", "Severity", "Lat", "Lon"],
+            fields=["grid_id", "priority_index", "severity", "lat", "lon"],
+            aliases=["Grid ID", "Priority index", "Severity", "Lat", "Lon"],
             max_width=240,
         ),
         name="Risk Grid",
@@ -334,11 +334,11 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
                 background:rgba(20,20,30,0.88);padding:12px 16px;
                 border-radius:8px;border:1px solid #334;
                 font-family:monospace;font-size:12px;color:#eee;">
-      <b style="color:#4fc3f7;">RISK LEVEL</b><br>
-      <span style="background:#C8F7C5;padding:2px 8px;">&nbsp;</span>&nbsp;&lt;25% &mdash; Low<br>
-      <span style="background:#FFF176;padding:2px 8px;">&nbsp;</span>&nbsp;25&ndash;50% &mdash; Medium<br>
-      <span style="background:#FF8C00;padding:2px 8px;">&nbsp;</span>&nbsp;50&ndash;75% &mdash; High<br>
-      <span style="background:#C62828;padding:2px 8px;">&nbsp;</span>&nbsp;&gt;75% &mdash; Severe<br>
+      <b style="color:#4fc3f7;">PRIORITY INDEX</b><br>
+      <span style="background:#C8F7C5;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 1 &middot; 0.00&ndash;0.25<br>
+      <span style="background:#FFF176;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 2 &middot; 0.25&ndash;0.50<br>
+      <span style="background:#FF8C00;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 3 &middot; 0.50&ndash;0.75<br>
+      <span style="background:#C62828;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 4 &middot; 0.75&ndash;1.00<br>
       <span style="background:#808080;padding:2px 8px;">&nbsp;</span>&nbsp;No DEM data<br>
       <hr style="border-color:#445;margin:6px 0;">
       <span style="color:#888;font-size:10px;">RandomForest trigger &times; susceptibility<br>
@@ -387,7 +387,7 @@ with st.sidebar:
     st.markdown("*SIH 2026 — Flash Flood Prediction System*")
     st.divider()
 
-    st.markdown("### 📅 Forecast Date")
+    st.markdown("### 📅 Replay date (historical ERA5-Land)")
     _min_date, _max_date = available_date_range()
 
     # A jump button on the previous run leaves a pending date here.  It must
@@ -420,11 +420,14 @@ with st.sidebar:
 
     st.markdown("### ⚠️ Alert Threshold")
     threshold = st.slider(
-        "Risk threshold for alerts",
-        min_value=0.0, max_value=1.0, value=0.60, step=0.05, format="%.2f",
-        help="Cells with risk above this value appear in the warning table.",
+        "Priority-index threshold for review",
+        min_value=0.0, max_value=1.0, value=0.50, step=0.05, format="%.2f",
+        help="Cells with a priority index above this value appear in the warning table.",
     )
-    st.caption(f"Cells with risk ≥ **{int(threshold*100)}%** trigger warnings.")
+    st.caption(
+        f"Cells with priority index ≥ **{threshold:.2f}** enter the review list — "
+        "team-set review threshold, not a calibrated probability."
+    )
 
     st.divider()
 
@@ -470,9 +473,9 @@ with st.sidebar:
 
 col_title, col_date = st.columns([3, 1])
 with col_title:
-    st.markdown("## 🗺️ Flash Flood Risk Map — Kamrup Metro")
+    st.markdown("## 🗺️ Storm-triggered priority map (flash flood & landslide) — Kamrup Metro")
 with col_date:
-    st.markdown(f"<br><b>Forecast:</b> {forecast_date}", unsafe_allow_html=True)
+    st.markdown(f"<br><b>Replay:</b> {forecast_date}", unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -501,7 +504,8 @@ st_folium(
 # WHY IS THIS CELL AT RISK? — EXPLAINABILITY PANEL
 # ══════════════════════════════════════════════════════════════════════════════
 
-st.markdown("### 🔎 Why is this cell at risk?")
+st.markdown("### 🔎 Why is this cell flagged?")
+st.caption("Contextual explanation (values vs monthly medians)")
 
 # The current Folium map intentionally does not return click events
 # (returned_objects=[]), so use the task-approved Grid ID selector fallback.
@@ -551,13 +555,13 @@ else:
         metric1, metric2, metric3, metric4 = st.columns(4)
 
         metric1.metric(
-            "Final Risk",
-            f"{explanation['final_risk_score']:.1%}",
+            "Priority index",
+            f"{explanation['final_risk_score']:.2f}",
         )
 
         metric2.metric(
-            "Trigger Probability",
-            f"{explanation['trigger_prob']:.1%}",
+            "Dynamic trigger",
+            f"{explanation['trigger_prob']:.2f}",
         )
 
         metric3.metric(
@@ -601,20 +605,22 @@ else:
         )
 
         st.caption(
-            f"Risk calculation: "
-            f"{explanation['trigger_prob']:.1%} trigger probability × "
+            f"Priority-index calculation: "
+            f"{explanation['trigger_prob']:.2f} dynamic trigger × "
             f"{explanation['susceptibility_multiplier']:.2f} susceptibility "
-            f"multiplier = {explanation['final_risk_score']:.1%} final risk."
+            f"multiplier = {explanation['final_risk_score']:.2f} priority index."
         )
 
 st.caption(
-    "**Risk = RandomForest trigger probability × susceptibility multiplier.** "
+    "**Priority index = RandomForest dynamic trigger × susceptibility "
+    "multiplier**, shown on a 0.00–1.00 scale. "
     "Susceptibility is terrain-derived (SRTM slope) and **floored by ASDMA's "
     "officially identified vulnerable locations** — 34 of 904 cells are raised "
     "to at least *High* on that basis. Multipliers are team-assigned weights "
     "calibrated to this district's slope distribution, not values from a "
     "published study.  "
-    "Bands: 🟢 Low (<25%) · 🟡 Medium (25–50%) · 🟠 High (50–75%) · 🔴 Severe (>75%) · "
+    "Bands: 🟢 Tier 1 · 0.00–0.25 (Low) · 🟡 Tier 2 · 0.25–0.50 (Medium) · "
+    "🟠 Tier 3 · 0.50–0.75 (High) · 🔴 Tier 4 · 0.75–1.00 (Severe) · "
     "⬜ No Data (93 cells outside DEM coverage)."
 )
 
@@ -634,21 +640,21 @@ m1.metric("🛰️ Total Cells Monitored", f"{len(gdf):,}")
 m2.metric(
     "🚨 Cells Above Threshold",
     f"{len(above_thresh):,}",
-    delta=f"≥ {int(threshold*100)}% risk",
+    delta=f"≥ {threshold:.2f} priority index",
     delta_color="inverse",
 )
-m3.metric("🔺 Highest Risk", f"{gdf['risk_probability'].max() * 100:.1f}%")
+m3.metric("🔺 Highest Priority Index", f"{gdf['risk_probability'].max():.2f}")
 
-st.markdown(f"**Top 10 highest-risk cells** above {int(threshold*100)}% threshold")
+st.markdown(f"**Top 10 highest-priority cells** above {threshold:.2f} threshold")
 
 if top10.empty:
     st.info(
-        f"✅ No cells exceed the {int(threshold*100)}% threshold. "
+        f"✅ No cells exceed the {threshold:.2f} priority-index threshold. "
         "Lower the slider to see warning candidates."
     )
 else:
-    display_df = top10[["grid_id", "centroid_lat", "centroid_lon", "risk_pct", "severity"]].copy()
-    display_df.columns = ["Grid ID", "Lat", "Lon", "Risk %", "Severity"]
+    display_df = top10[["grid_id", "centroid_lat", "centroid_lon", "priority_index", "severity"]].copy()
+    display_df.columns = ["Grid ID", "Lat", "Lon", "Priority index", "Severity"]
     display_df["Lat"] = display_df["Lat"].round(4)
     display_df["Lon"] = display_df["Lon"].round(4)
 
@@ -664,7 +670,7 @@ else:
         display_df.style
         # Styler.applymap was removed in pandas 3.0 — .map is the replacement
         .map(_sev_color, subset=["Severity"])
-        .format({"Risk %": "{:.1f}"})
+        .format({"Priority index": "{:.2f}"})
         .set_properties(**{"background-color": "rgba(10,20,40,0.6)", "color": "#e0e0e0"})
         .set_table_styles([
             {"selector": "th", "props": [("background-color", "#1a3a6b"), ("color", "#90caf9")]},
