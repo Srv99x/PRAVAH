@@ -9,9 +9,10 @@ Run with:
 
 What is real and what is simulated
 ─────────────────────────────────
-REAL       Risk scores, for any date from 2018-01-01 to 2025-12-31.
-             risk[cell, date] = trigger_prob[weather_point(cell), date]
-                                * susceptibility_multiplier[cell]
+REAL       Priority levels, for any date from 2018-01-01 to 2025-12-31.
+             priority[cell, date] = PRIORITY_MATRIX[susceptibility class of cell]
+                                    [trigger tier of trigger_prob[weather_point(cell), date]]
+           The 4x4 matrix and the tier boundaries live in app/config.py.
            Trigger probabilities come from the RandomForest model via the
            precomputed cache (build_trigger_cache.py, 55,518 rows); the
            susceptibility layer is terrain-derived and floored by ASDMA's
@@ -23,7 +24,7 @@ SIMULATED  IoT sensor telemetry (app/mqtt_sim.py). No public
            the ingestion interface a real feed would drop into. This is
            disclosed in the UI and must stay disclosed.
 
-Regenerating after a model or multiplier change
+Regenerating after a model or matrix change
 ───────────────────────────────────────────────
     python build_susceptibility.py     # susceptibility classes
     python build_trigger_cache.py      # trigger probability cache
@@ -60,11 +61,23 @@ from streamlit_folium import st_folium
 sys.path.insert(0, os.path.dirname(__file__))
 from mqtt_sim import get_sensor_readings  # noqa: E402
 
+from app.config import (  # noqa: E402
+    PRIORITY_COLORS,
+    PRIORITY_MATRIX,
+    PRIORITY_NAMES,
+    REVIEW_MIN_PRIORITY,
+    SUSCEPTIBILITY_ORDER,
+    TRIGGER_TIER_LABELS,
+    TRIGGER_TIER_WORDS,
+    priority_levels,
+    trigger_tier,
+)
+
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
 st.set_page_config(
-    page_title="PRAVAH — Kamrup Metro Early Warning",
+    page_title="PRAVAH — Kamrup Metro Priority Queue",
     page_icon="🌊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -81,9 +94,7 @@ GRID_PARQUET = os.path.join(
     "kamrup_metro_grid_1km.parquet"
 )
 
-RISK_BINS   = [0.0,  0.25,  0.50,  0.75, 1.01]
-RISK_COLORS = ["#C8F7C5", "#FFF176", "#FF8C00", "#C62828"]
-RISK_LABELS = ["Low", "Medium", "High", "Severe"]
+NO_DATA_COLOR = "#808080"
 
 # Opens on the deadliest documented event in the record.
 DEFAULT_DATE = date(2025, 5, 30)
@@ -115,12 +126,6 @@ MAPPING_PARQUET = os.path.join(DATA_DIR, "grid_weather_mapping.parquet")
 SUSCEPTIBILITY_PARQUET = os.path.join(DATA_DIR, "susceptibility_features.parquet")
 MISSING_CELLS_JSON = os.path.join(DATA_DIR, "missing_terrain_cells.json")
 
-# Susceptibility class -> static multiplier.  Imported from app.predict so the
-# app and the offline pipeline can never disagree about the risk scale.
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from app.predict import SUSCEPTIBILITY_MULTIPLIERS  # noqa: E402
-
-
 # ══════════════════════════════════════════════════════════════════════════════
 # STATIC LAYER — grid geometry + per-cell susceptibility.  Loaded once.
 # ══════════════════════════════════════════════════════════════════════════════
@@ -128,7 +133,7 @@ from app.predict import SUSCEPTIBILITY_MULTIPLIERS  # noqa: E402
 @st.cache_data(show_spinner=False)
 def load_static() -> gpd.GeoDataFrame:
     """
-    Grid geometry joined to weather point and susceptibility multiplier.
+    Grid geometry joined to weather point and susceptibility class.
 
     Everything here is date-independent, so it is loaded exactly once per
     session; only the trigger probability changes when the date changes.
@@ -156,10 +161,6 @@ def load_static() -> gpd.GeoDataFrame:
         ])
         st.error(msg)
         raise RuntimeError(msg)
-
-    gdf["susceptibility_mult"] = (
-        gdf["gsi_susceptibility_class"].map(SUSCEPTIBILITY_MULTIPLIERS).fillna(0.0)
-    )
 
     with open(MISSING_CELLS_JSON, "r") as fh:
         gdf["no_dem"] = gdf["grid_id"].isin(json.load(fh))
@@ -193,60 +194,65 @@ def available_date_range() -> tuple:
 # ══════════════════════════════════════════════════════════════════════════════
 
 @st.cache_data(show_spinner=False)
-def risk_for_date(target_date) -> pd.DataFrame:
+def trigger_for_date(target_date) -> np.ndarray:
     """
-    Per-cell risk for one date:  trigger probability x susceptibility.
+    Per-cell trigger probability for one date (NaN if the date is not cached).
 
-    Identical to app.predict.predict_risk() on that date's peak hour — the
-    cache builder asserts the two agree to 1e-6 across all 904 cells.
-    Cached per date, so revisiting a date is instant.
+    The trigger is the model's daily-peak probability for the cell's weather
+    point.  Cached per date, so revisiting a date is instant.
     """
     static = load_static()
     cache = load_trigger_cache()
 
     day = cache[cache["date"] == pd.Timestamp(target_date)]
     if day.empty:
-        return pd.DataFrame(
-            {"grid_id": static["grid_id"], "trigger_prob": np.nan, "risk": np.nan}
-        )
-
-    trig = static["weather_point_id"].map(
+        return np.full(len(static), np.nan)
+    return static["weather_point_id"].map(
         day.set_index("weather_point_id")["trigger_prob"]
-    )
-    return pd.DataFrame({
-        "grid_id": static["grid_id"],
-        "trigger_prob": trig.to_numpy(),
-        "risk": (trig * static["susceptibility_mult"]).to_numpy(),
-    })
+    ).to_numpy()
 
 
 def build_display_gdf(target_date) -> gpd.GeoDataFrame:
-    """Static grid + this date's risk, with severity bands and No-Data cells."""
+    """
+    Static grid + this date's trigger, trigger tier and matrix priority.
+
+    priority_level is 1-4 from app.config.PRIORITY_MATRIX, or 0 for a cell
+    that has no priority: no DEM coverage (no susceptibility class) or no
+    cached trigger for the date.  Those render grey "No Data", never as low
+    priority.
+    """
     gdf = load_static().copy()
-    gdf["risk_probability"] = risk_for_date(target_date)["risk"].to_numpy()
-    gdf["priority_index"] = gdf["risk_probability"].round(2)
-
-    gdf["severity"] = pd.cut(
-        gdf["risk_probability"], bins=RISK_BINS, labels=RISK_LABELS, right=False
+    gdf["trigger_prob"] = trigger_for_date(target_date)
+    gdf["priority_level"] = priority_levels(
+        gdf["gsi_susceptibility_class"], gdf["trigger_prob"]
     )
-    gdf["severity"] = gdf["severity"].cat.add_categories(["No Data"])
+    gdf.loc[gdf["no_dem"], "priority_level"] = 0
 
-    # Cells with no DEM coverage have no susceptibility class, so their risk is
-    # undefined rather than low — render grey, not green.
-    gdf.loc[gdf["no_dem"], "severity"] = "No Data"
-    gdf.loc[gdf["no_dem"], ["risk_probability", "priority_index"]] = np.nan
+    gdf["priority_name"] = gdf["priority_level"].map(PRIORITY_NAMES).fillna("No Data")
+    gdf["trigger_tier"] = [
+        "" if pd.isna(p) else trigger_tier(p) for p in gdf["trigger_prob"]
+    ]
+    gdf["susceptibility"] = gdf["gsi_susceptibility_class"].fillna("No DEM data")
+    gdf.loc[gdf["no_dem"], "trigger_prob"] = np.nan
 
+    # Sort key for the review queue: level, then trigger, then susceptibility.
+    gdf["_susc_rank"] = gdf["gsi_susceptibility_class"].map(
+        {name: i for i, name in enumerate(SUSCEPTIBILITY_ORDER)}
+    ).fillna(-1)
     return gdf
 
 
-def get_risk_color(risk: float) -> str:
-    """Map a risk value [0,1] to its display hex colour."""
-    if pd.isna(risk):
-        return "#808080" # 5th category for No Data
-    for i, threshold in enumerate(RISK_BINS[1:]):
-        if risk < threshold:
-            return RISK_COLORS[i]
-    return RISK_COLORS[-1]
+def rank_cells(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """Order cells for the review queue (ties within a level are broken by trigger, then susceptibility)."""
+    return gdf.sort_values(
+        ["priority_level", "trigger_prob", "_susc_rank", "grid_id"],
+        ascending=[False, False, False, True],
+    )
+
+
+def get_priority_color(level: int) -> str:
+    """Map a priority level (0 = no data) to its display hex colour."""
+    return PRIORITY_COLORS.get(int(level), NO_DATA_COLOR)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -256,7 +262,7 @@ def get_risk_color(risk: float) -> str:
 # scoring) is cached in load_static(); map build is ~1 s from memory.
 # ══════════════════════════════════════════════════════════════════════════════
 
-def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
+def build_folium_map(gdf: gpd.GeoDataFrame, review_min: int) -> folium.Map:
     """
     Build the Folium choropleth map of all 904 grid cells.
 
@@ -283,19 +289,23 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
     # Build a FeatureCollection with style props embedded in each feature
     features = []
     for _, row in gdf.iterrows():
-        risk          = float(row["risk_probability"])
-        fill_color    = get_risk_color(risk)
+        level         = int(row["priority_level"])
+        fill_color    = get_priority_color(level)
         fill_opacity  = 0.50
-        border_color  = "#FF4444" if risk >= threshold else "#555555"
-        border_weight = 2.0 if risk >= threshold else 0.3
+        in_review     = level >= review_min
+        border_color  = "#FF4444" if in_review else "#555555"
+        border_weight = 2.0 if in_review else 0.3
 
         features.append({
             "type": "Feature",
             "geometry": row["geometry"].__geo_interface__,
             "properties": {
                 "grid_id":         row["grid_id"],
-                "priority_index":  float(row["priority_index"]),
-                "severity":        str(row["severity"]),
+                "priority":        (f"{level} {row['priority_name']}" if level else "No Data"),
+                "susceptibility":  str(row["susceptibility"]),
+                "trigger":         ("n/a" if pd.isna(row["trigger_prob"])
+                                    else f"{row['trigger_tier']} ({row['trigger_prob']:.2f})"),
+                "review":          ("Yes" if in_review else "No") if level else "n/a",
                 "lat":          float(row["centroid_lat"]),
                 "lon":          float(row["centroid_lon"]),
                 # Pre-computed style — lambda below reads these, captures nothing
@@ -315,38 +325,76 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
             "fillOpacity": feat["properties"]["fillOpacity"],
         },
         tooltip=folium.GeoJsonTooltip(
-            fields=["grid_id", "priority_index", "severity"],
-            aliases=["Grid ID", "Priority index", "Severity"],
+            fields=["grid_id", "priority", "susceptibility", "trigger", "review"],
+            aliases=["Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue"],
             localize=True,
             sticky=True,
         ),
         popup=folium.GeoJsonPopup(
-            fields=["grid_id", "priority_index", "severity", "lat", "lon"],
-            aliases=["Grid ID", "Priority index", "Severity", "Lat", "Lon"],
+            fields=["grid_id", "priority", "susceptibility", "trigger", "review", "lat", "lon"],
+            aliases=["Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue", "Lat", "Lon"],
             max_width=240,
         ),
         name="Risk Grid",
     ).add_to(m)
 
     # Legend overlay
-    m.get_root().html.add_child(folium.Element("""
+    swatches = "".join(
+        f'<span style="background:{PRIORITY_COLORS[level]};padding:2px 8px;">&nbsp;</span>'
+        f'&nbsp;{level} &middot; {PRIORITY_NAMES[level]}<br>'
+        for level in sorted(PRIORITY_NAMES)
+    )
+    review_name = PRIORITY_NAMES[review_min]
+    m.get_root().html.add_child(folium.Element(f"""
     <div style="position:fixed;bottom:30px;left:30px;z-index:9999;
                 background:rgba(20,20,30,0.88);padding:12px 16px;
                 border-radius:8px;border:1px solid #334;
                 font-family:monospace;font-size:12px;color:#eee;">
-      <b style="color:#4fc3f7;">PRIORITY INDEX</b><br>
-      <span style="background:#C8F7C5;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 1 &middot; 0.00&ndash;0.25<br>
-      <span style="background:#FFF176;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 2 &middot; 0.25&ndash;0.50<br>
-      <span style="background:#FF8C00;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 3 &middot; 0.50&ndash;0.75<br>
-      <span style="background:#C62828;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 4 &middot; 0.75&ndash;1.00<br>
-      <span style="background:#808080;padding:2px 8px;">&nbsp;</span>&nbsp;No DEM data<br>
+      <b style="color:#4fc3f7;">PRIORITY LEVEL</b><br>
+      {swatches}
+      <span style="background:{NO_DATA_COLOR};padding:2px 8px;">&nbsp;</span>&nbsp;No DEM data<br>
+      <span style="border:2px solid #FF4444;padding:0 6px;">&nbsp;</span>&nbsp;Review queue: {review_min} ({review_name}) and above<br>
       <hr style="border-color:#445;margin:6px 0;">
-      <span style="color:#888;font-size:10px;">RandomForest trigger &times; susceptibility<br>
-      (terrain + ASDMA official hazard list)</span>
+      <span style="color:#888;font-size:10px;">Susceptibility class x trigger tier, from a lookup table<br>
+      (RandomForest trigger; slope + listed hazard sites)</span>
     </div>
     """))
 
     return m
+
+
+def matrix_html(susceptibility_class: str, tier: str, review_min: int) -> str:
+    """
+    The 4x4 decision matrix as a small HTML table, this cell's entry outlined.
+
+    Drawn from app.config.PRIORITY_MATRIX so it can never disagree with the
+    lookup that produced the priority.  Not st.dataframe on purpose: the
+    screenshot script anchors on the first stDataFrame (the review queue).
+    """
+    head = "".join(f"<th style='padding:3px 10px;'>{t}</th>" for t in TRIGGER_TIER_LABELS)
+    rows = []
+    for susc in reversed(SUSCEPTIBILITY_ORDER):
+        cells = []
+        for t in TRIGGER_TIER_LABELS:
+            level = PRIORITY_MATRIX[susc][t]
+            is_this = susc == susceptibility_class and t == tier
+            outline = "border:3px solid #ffffff;font-weight:700;" if is_this else "border:1px solid #334;"
+            cells.append(
+                f"<td style='padding:3px 10px;text-align:center;{outline}"
+                f"background:{PRIORITY_COLORS[level]};color:#111;'>"
+                f"{level} {PRIORITY_NAMES[level]}</td>"
+            )
+        rows.append(
+            f"<tr><td style='padding:3px 10px;color:#90caf9;'>{susc}</td>{''.join(cells)}</tr>"
+        )
+    return (
+        "<div style='margin-top:10px;font-size:13px;'>"
+        "<table style='border-collapse:collapse;'>"
+        f"<tr><th></th>{head}</tr>{''.join(rows)}</table>"
+        f"<div style='color:#78909c;margin-top:4px;'>Rows: susceptibility. Columns: trigger tier. "
+        f"White outline: this cell. Review queue starts at level {review_min}.</div>"
+        "</div>"
+    )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -383,7 +431,7 @@ h3 { color: #81d4fa !important; }
 
 with st.sidebar:
     st.markdown("## 🌊 PRAVAH")
-    st.markdown("**Kamrup Metro District Early Warning**")
+    st.markdown("**Kamrup Metro - district priority queue (prototype)**")
     st.markdown("*SIH 2026 — Flash Flood Prediction System*")
     st.divider()
 
@@ -418,15 +466,21 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### ⚠️ Alert Threshold")
-    threshold = st.slider(
-        "Priority-index threshold for review",
-        min_value=0.0, max_value=1.0, value=0.50, step=0.05, format="%.2f",
-        help="Cells with a priority index above this value appear in the warning table.",
+    st.markdown("### ⚠️ Review queue")
+    # Level 1 (Routine) would put every cell in the queue, so it is not offered.
+    review_options = [level for level in sorted(PRIORITY_NAMES) if level > 1]
+    review_min = st.select_slider(
+        "Minimum priority for the review queue",
+        options=review_options,
+        value=REVIEW_MIN_PRIORITY,
+        format_func=lambda level: f"{level} · {PRIORITY_NAMES[level]}",
+        help="Cells at this priority level or above enter the ranked review queue.",
     )
     st.caption(
-        f"Cells with priority index ≥ **{threshold:.2f}** enter the review list — "
-        "team-set review threshold, not a calibrated probability."
+        f"Cells at priority **{review_min} ({PRIORITY_NAMES[review_min]})** or above "
+        "enter the review queue. The default was chosen by a stated rule on training "
+        "folds only — see `docs/priority_matrix.md`. It is a team-set review level, "
+        "not a calibrated probability."
     )
 
     st.divider()
@@ -446,22 +500,22 @@ with st.sidebar:
     st.markdown("### 📖 How to read this map")
     st.markdown(
         '<p class="sidebar-caption">'
-        "<b>Risk = trigger × susceptibility.</b><br><br>"
+        "<b>Priority = a lookup of susceptibility class × trigger tier.</b><br><br>"
         "<b>Trigger</b> is real model output — a RandomForest trained on "
         "ERA5-Land soil moisture and antecedent precipitation, labelled from "
         "rainfall intensity–duration thresholds plus 7 verified "
         "landslide/flood incidents (2022–2025).<br><br>"
-        "<b>Susceptibility is terrain-derived, floored by ASDMA's officially "
-        "identified vulnerable locations.</b> That means a cell can show high "
-        "risk because it appears on Assam's official vulnerable-locations "
-        "list, not only because the terrain model inferred it. We do this "
+        "<b>Susceptibility is terrain-derived, floored by listed hazard "
+        "sites.</b> That means a cell can show high "
+        "risk because it appears on the listed hazard sites, "
+        "not only because the terrain model inferred it. We do this "
         "because 1 km mean slope alone ranks these cells wrongly: every "
         "documented landslide site in the district sits in a cell that is "
         "flatter than the district average, since the failure happens on a "
         "local hill cut a 1 km average erases.<br><br>"
-        "Susceptibility multipliers (0.20 / 0.45 / 0.70 / 0.90) are "
-        "team-assigned weights calibrated to this district's slope "
-        "distribution — not values from a published study."
+        "The lookup table (susceptibility class × trigger tier → priority "
+        "level) is a team-assigned judgement, not a value from a published "
+        "study. It is written out in full in <code>app/config.py</code>."
         "</p>",
         unsafe_allow_html=True,
     )
@@ -482,7 +536,7 @@ with col_date:
 # LOAD DATA
 # ══════════════════════════════════════════════════════════════════════════════
 
-with st.spinner("Loading grid and computing risk …"):
+with st.spinner("Loading grid and computing priority …"):
     gdf = build_display_gdf(forecast_date)
 
 
@@ -490,8 +544,8 @@ with st.spinner("Loading grid and computing risk …"):
 # MAIN PANE — MAP
 # ══════════════════════════════════════════════════════════════════════════════
 
-with st.spinner("Rendering risk map …"):
-    flood_map = build_folium_map(gdf, threshold)
+with st.spinner("Rendering priority map …"):
+    flood_map = build_folium_map(gdf, review_min)
 
 st_folium(
     flood_map,
@@ -509,16 +563,13 @@ st.caption("Contextual explanation (values vs monthly medians)")
 
 # The current Folium map intentionally does not return click events
 # (returned_objects=[]), so use the task-approved Grid ID selector fallback.
-valid_gdf = gdf[gdf["severity"] != "No Data"].copy()
+valid_gdf = gdf[gdf["priority_level"] > 0].copy()
 
 if valid_gdf.empty:
     st.info("No valid terrain cells are available for explanation on this date.")
 else:
-    # Automatically select the highest-risk valid cell.
-    highest_risk_grid = (
-        valid_gdf.sort_values("risk_probability", ascending=False)
-        .iloc[0]["grid_id"]
-    )
+    # Automatically select the top-ranked valid cell.
+    highest_risk_grid = rank_cells(valid_gdf).iloc[0]["grid_id"]
 
     grid_options = gdf["grid_id"].tolist()
 
@@ -531,8 +582,8 @@ else:
             else 0
         ),
         help=(
-            "Select any grid cell to see why its current risk is "
-            "Low, Medium, High, or Severe."
+            "Select any grid cell to see why its priority is "
+            "Routine, Watch, Elevated or Critical."
         ),
     )
 
@@ -540,6 +591,7 @@ else:
         explanation = explain_cell(
             selected_grid,
             forecast_date.strftime("%Y-%m-%d"),
+            review_min_priority=review_min,
         )
     except Exception as exc:
         st.error(
@@ -555,13 +607,13 @@ else:
         metric1, metric2, metric3, metric4 = st.columns(4)
 
         metric1.metric(
-            "Priority index",
-            f"{explanation['final_risk_score']:.2f}",
+            "Priority level",
+            f"{explanation['priority_level']} · {explanation['priority_name']}",
         )
 
         metric2.metric(
-            "Dynamic trigger",
-            f"{explanation['trigger_prob']:.2f}",
+            "Trigger tier",
+            f"{explanation['trigger_tier']} · {explanation['trigger_prob']:.2f}",
         )
 
         metric3.metric(
@@ -570,8 +622,8 @@ else:
         )
 
         metric4.metric(
-            "Severity",
-            explanation["severity"],
+            "In review queue",
+            "Yes" if explanation["in_review_queue"] else "No",
         )
 
         st.markdown(
@@ -604,23 +656,46 @@ else:
             unsafe_allow_html=True,
         )
 
-        st.caption(
-            f"Priority-index calculation: "
-            f"{explanation['trigger_prob']:.2f} dynamic trigger × "
-            f"{explanation['susceptibility_multiplier']:.2f} susceptibility "
-            f"multiplier = {explanation['final_risk_score']:.2f} priority index."
+        st.markdown(
+            '<div style="color:#90caf9; font-size:18px; font-weight:700; margin-top:20px;">'
+            '3. Decision — how the two combine'
+            '</div>',
+            unsafe_allow_html=True,
         )
 
+        st.markdown(
+            f'<div style="color:#e0e0e0; font-size:16px; line-height:1.7; margin-top:8px;">'
+            f'{explanation["decision_text"]}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            matrix_html(
+                explanation["susceptibility_class"],
+                explanation["trigger_tier"],
+                review_min,
+            ),
+            unsafe_allow_html=True,
+        )
+
+_tier_text = "; ".join(f"{t} {TRIGGER_TIER_WORDS[t]}" for t in TRIGGER_TIER_LABELS)
+_level_text = " · ".join(
+    f"{emoji} {level} {PRIORITY_NAMES[level]}"
+    for emoji, level in zip(["🟢", "🟡", "🟠", "🔴"], sorted(PRIORITY_NAMES))
+)
 st.caption(
-    "**Priority index = RandomForest dynamic trigger × susceptibility "
-    "multiplier**, shown on a 0.00–1.00 scale. "
-    "Susceptibility is terrain-derived (SRTM slope) and **floored by ASDMA's "
-    "officially identified vulnerable locations** — 34 of 904 cells are raised "
-    "to at least *High* on that basis. Multipliers are team-assigned weights "
-    "calibrated to this district's slope distribution, not values from a "
-    "published study.  "
-    "Bands: 🟢 Tier 1 · 0.00–0.25 (Low) · 🟡 Tier 2 · 0.25–0.50 (Medium) · "
-    "🟠 Tier 3 · 0.50–0.75 (High) · 🔴 Tier 4 · 0.75–1.00 (Severe) · "
+    "**Priority = decision matrix: susceptibility class × trigger tier.** "
+    f"Trigger tiers come from the RandomForest daily-peak trigger: {_tier_text}. "
+    "Susceptibility is terrain-derived (SRTM slope) and "
+    "**floored at cells containing a listed hazard site or a dated "
+    "incident**. The hazard list is 47 locations compiled from news "
+    "reports and official sources; per-row source in "
+    "`data/raw/asdma_vulnerable_locations.csv`. 34 of 904 cells are raised "
+    "to at least *High* on that basis. The matrix entries are team-assigned "
+    "judgements, not values from a published study; the review level was "
+    "chosen by a stated rule, see `docs/priority_matrix.md`.  "
+    f"Levels: {_level_text} · "
     "⬜ No Data (93 cells outside DEM coverage)."
 )
 
@@ -630,53 +705,76 @@ st.caption(
 # ══════════════════════════════════════════════════════════════════════════════
 
 st.markdown("---")
-st.markdown("## ⚠️ Active Early Warnings")
+st.markdown("## ⚠️ Ranked review queue")
+st.caption("Historical replay - no forecast lead time. Ranking only.")
 
-above_thresh = gdf[gdf["risk_probability"] >= threshold]
-top10        = above_thresh.nlargest(10, "risk_probability")
+review_name = PRIORITY_NAMES[review_min]
+in_queue = gdf[gdf["priority_level"] >= review_min]
+top10 = rank_cells(in_queue).head(10)
 
 m1, m2, m3 = st.columns(3)
 m1.metric("🛰️ Total Cells Monitored", f"{len(gdf):,}")
 m2.metric(
-    "🚨 Cells Above Threshold",
-    f"{len(above_thresh):,}",
-    delta=f"≥ {threshold:.2f} priority index",
+    "🚨 Cells in Review Queue",
+    f"{len(in_queue):,}",
+    delta=f"priority ≥ {review_min} ({review_name})",
     delta_color="inverse",
 )
-m3.metric("🔺 Highest Priority Index", f"{gdf['risk_probability'].max():.2f}")
+_top_level = int(gdf["priority_level"].max())
+m3.metric(
+    "🔺 Highest Priority Today",
+    f"{_top_level} · {PRIORITY_NAMES[_top_level]}" if _top_level else "n/a",
+)
 
-st.markdown(f"**Top 10 highest-priority cells** above {threshold:.2f} threshold")
+st.markdown(
+    f"**Top 10 highest-priority cells** at priority {review_min} ({review_name}) "
+    "or above. Ties within a level are ordered by trigger, then susceptibility."
+)
 
 if top10.empty:
     st.info(
-        f"✅ No cells exceed the {threshold:.2f} priority-index threshold. "
-        "Lower the slider to see warning candidates."
+        f"✅ No cells are at priority {review_min} ({review_name}) or above on this "
+        "date. Lower the minimum priority in the sidebar to see lower levels."
     )
 else:
-    display_df = top10[["grid_id", "centroid_lat", "centroid_lon", "priority_index", "severity"]].copy()
-    display_df.columns = ["Grid ID", "Lat", "Lon", "Priority index", "Severity"]
+    display_df = top10[[
+        "grid_id", "centroid_lat", "centroid_lon",
+        "priority_level", "trigger_tier", "trigger_prob", "susceptibility",
+    ]].copy()
+    display_df["Priority"] = [
+        f"{lv} · {PRIORITY_NAMES[lv]}" for lv in display_df["priority_level"]
+    ]
+    display_df["Trigger"] = [
+        f"{t} · {p:.2f}" for t, p in zip(display_df["trigger_tier"], display_df["trigger_prob"])
+    ]
+    display_df = display_df.rename(columns={
+        "grid_id": "Grid ID", "centroid_lat": "Lat", "centroid_lon": "Lon",
+        "susceptibility": "Susceptibility",
+    })[["Grid ID", "Lat", "Lon", "Priority", "Trigger", "Susceptibility"]]
     display_df["Lat"] = display_df["Lat"].round(4)
     display_df["Lon"] = display_df["Lon"].round(4)
 
-    def _sev_color(val):
+    def _priority_color(val):
+        name = str(val).split("· ")[-1]
         return {
-            "Low":    "color: #a5d6a7",
-            "Medium": "color: #fff176",
-            "High":   "color: #ffb74d",
-            "Severe": "color: #ef5350",
-        }.get(str(val), "")
+            "Routine":  "color: #a5d6a7",
+            "Watch":    "color: #fff176",
+            "Elevated": "color: #ffb74d",
+            "Critical": "color: #ef5350",
+        }.get(name, "")
 
     styled = (
         display_df.style
         # Styler.applymap was removed in pandas 3.0 — .map is the replacement
-        .map(_sev_color, subset=["Severity"])
-        .format({"Priority index": "{:.2f}"})
+        .map(_priority_color, subset=["Priority"])
         .set_properties(**{"background-color": "rgba(10,20,40,0.6)", "color": "#e0e0e0"})
         .set_table_styles([
             {"selector": "th", "props": [("background-color", "#1a3a6b"), ("color", "#90caf9")]},
         ])
     )
     st.dataframe(styled, use_container_width=True, hide_index=True)
+    if len(in_queue) > len(top10):
+        st.caption(f"Showing the top {len(top10)} of {len(in_queue):,} cells in the review queue.")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -708,8 +806,6 @@ if iot_active:
             cols = st.columns(len(readings))
             for col, r in zip(cols, readings):
                 with col:
-                    cell_risk = gdf.loc[gdf["grid_id"] == r["grid_id"], "risk_probability"]
-                    crv = float(cell_risk.values[0]) if len(cell_risk) else 0.0
                     st.markdown(
                         f"**{r['sensor_id']}**  \n<small>{r['label']}</small>",
                         unsafe_allow_html=True,

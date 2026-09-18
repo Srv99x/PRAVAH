@@ -2,7 +2,7 @@ import pickle
 from pathlib import Path
 import pandas as pd
 
-from app.config import SUSCEPTIBILITY_MULTIPLIERS
+from app.config import SUSCEPTIBILITY_MULTIPLIERS, priority_levels, trigger_tier
 
 # RandomForest is the shipped model: it won on PR-AUC (0.8257 vs XGBoost's
 # 0.7504) on the episode-grouped split. See docs/model_training_log.md for the
@@ -71,8 +71,11 @@ def predict_risk(feature_df: pd.DataFrame) -> pd.DataFrame:
     pandas.DataFrame
         DataFrame with columns:
         - dynamic_trigger_prob: Raw probability from model (wetness)
-        - susceptibility_mult: Static multiplier from terrain slope
-        - final_risk_score: Combined gated probability
+        - trigger_tier: 'T1'..'T4' from app.config.TRIGGER_TIER_LOWER_BOUNDS
+        - priority_level: 1-4 from app.config.PRIORITY_MATRIX (0 = no class)
+        - susceptibility_mult: LEGACY static multiplier, kept for comparison
+        - final_risk_score: LEGACY trigger x multiplier; no longer used to
+          decide priority (see docs/priority_matrix.md)
     """
     model = load_model()
     
@@ -92,12 +95,19 @@ def predict_risk(feature_df: pd.DataFrame) -> pd.DataFrame:
     # 2. Static Susceptibility Layer
     susceptibility_mult = get_susceptibility_multiplier(feature_df["grid_id"]).values
     
-    # 3. Final Combined Score
+    # 3. Priority from the decision matrix (the rule the app uses), plus the
+    #    legacy product for side-by-side comparison only.
+    susceptibility_class = _susceptibility_df.set_index("grid_id")[
+        "gsi_susceptibility_class"
+    ].reindex(feature_df["grid_id"]).to_numpy()
+    level = priority_levels(susceptibility_class, dynamic_probs)
     final_risk = dynamic_probs * susceptibility_mult
     
     result = pd.DataFrame({
         "grid_id": feature_df["grid_id"],
         "dynamic_trigger_prob": dynamic_probs,
+        "trigger_tier": [trigger_tier(p) for p in dynamic_probs],
+        "priority_level": level,
         "susceptibility_mult": susceptibility_mult,
         "final_risk_score": final_risk
     })

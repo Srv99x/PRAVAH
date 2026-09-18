@@ -26,24 +26,28 @@ proactive alerts.
 
 ## Architecture
 
-Risk for each cell and date is a product of one dynamic layer and one static layer:
+The priority of each cell and date is a table lookup that combines one dynamic layer and
+one static layer:
 
 ```
-risk[cell, date] = trigger_prob[weather_point(cell), date] * susceptibility_multiplier[cell]
+priority[cell, date] = PRIORITY_MATRIX[susceptibility class of cell][trigger tier of trigger_prob[weather_point(cell), date]]
 ```
+
+The 4x4 matrix, the trigger-tier boundaries (T1 < 0.25, T2 0.25-0.50, T3 0.50-0.80,
+T4 >= 0.80) and the review level live in `app/config.py`; the evidence for them is in
+`docs/priority_matrix.md`.
 
 - **Static susceptibility** is terrain-derived from 1 km mean slope, then *floored* to at
   least "High" for any cell containing a listed hazard site (news and official sources,
   per-row source in `data/raw/asdma_vulnerable_locations.csv`) **or** a dated-incident cell.
-  The class is mapped to a team-assigned multiplier
-  (Low 0.20 / Moderate 0.45 / High 0.70 / Very High 0.90).
+  The class (Low / Moderate / High / Very High) is one axis of the decision matrix.
 - **Dynamic trigger** is a scikit-learn RandomForest (`n_estimators=100`,
   `class_weight='balanced'`) trained on five weather-point-level features —
   `soil_moisture_0_7`, `soil_moisture_7_28`, `temp_c`, `api_3d`, `api_7d` (soil moisture at
   two depths, temperature, and the 3-day / 7-day Antecedent Precipitation Index). Labels
   come from rainfall intensity–duration thresholds plus verified landslide/flood incidents.
 - Trigger probabilities are precomputed by `build_trigger_cache.py`, so the app renders any
-  date as a lookup and a multiply, with no model call at demo time.
+  date as a lookup, with no model call at demo time.
 
 ## Results and validation
 
@@ -162,10 +166,12 @@ and the per-cell explanation panel.
 - **Simulated IoT telemetry.** No public village-level sensor network exists in India. The
   IoT panel demonstrates the ingestion interface a real MQTT feed would drop into; the data
   is simulated and disclosed as such in the UI.
-- **Team-assigned susceptibility multipliers.** The 0.20 / 0.45 / 0.70 / 0.90 weights are
-  calibrated to this district's slope distribution, not taken from a published study.
-- **Partial DEM coverage.** 93 of the 904 cells lack DEM coverage; they get multiplier 0.0
-  and are rendered as grey "No Data", not as genuine low risk.
+- **Team-assigned decision matrix.** The matrix entries and tier boundaries are team
+  judgements, not taken from a published study. The review level was chosen by a stated
+  rule on training folds only (`docs/priority_matrix.md`); the labels contain no positive in
+  a Moderate cell, so recall cannot vouch for Moderate cells being in the queue.
+- **Partial DEM coverage.** 93 of the 904 cells lack DEM coverage; they get no priority
+  and are rendered as grey "No Data", not as genuine low priority.
 - **Single-district scope.** The system is built and validated for Kamrup Metropolitan
   only.
 
