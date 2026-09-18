@@ -49,6 +49,10 @@ MAP_TITLE_TEXT = (
 )
 EXPLAIN_HEADING_TEXT = "🔎 Why is this cell flagged?"
 RANKED_HEADING_TEXT = "⚠️ Ranked review queue"
+# Last text in the explanation panel (the caption under the decision matrix). The explain
+# screenshot ends here, so the script must WAIT for it: a rerun can take longer than a fixed sleep.
+EXPLAIN_BOTTOM_ANCHOR = "White outline: this cell"
+EXPLAIN_ANCHOR_TIMEOUT_MS = 30000
 
 CLIP_PADDING = 6
 
@@ -329,6 +333,20 @@ def wait_for_map_ready(page: Page) -> None:
     page.wait_for_timeout(3000)  # fixed settle, as specified
 
 
+def wait_for_text(page: Page, text: str, timeout_ms: int) -> None:
+    """Block until `text` is present in the rendered page, with a clear error if it never is."""
+    try:
+        page.wait_for_function(
+            "(t) => document.body.innerText.includes(t)", arg=text, timeout=timeout_ms
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            f"Could not locate on page: {text!r} within {timeout_ms / 1000:.0f}s. "
+            "The explanation panel did not finish rendering, or its text changed and "
+            "EXPLAIN_BOTTOM_ANCHOR no longer matches."
+        ) from exc
+
+
 def select_grid_cell(page: Page, grid_id: str) -> None:
     combobox = page.locator('[data-testid="stSelectbox"] input')
     combobox.click()
@@ -347,8 +365,9 @@ def select_grid_cell(page: Page, grid_id: str) -> None:
         arg=grid_id,
         timeout=15000,
     )
-    # Give the resulting rerun time to repaint the explanation panel.
-    page.wait_for_timeout(1500)
+    # Wait for the explanation panel to finish repainting: its last line is the bottom anchor.
+    wait_for_text(page, EXPLAIN_BOTTOM_ANCHOR, EXPLAIN_ANCHOR_TIMEOUT_MS)
+    page.wait_for_timeout(500)  # let layout settle after the text appears
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -409,7 +428,7 @@ def main() -> None:
                 explain_path,
                 top_box_fn=lambda: leaf_exact_box(page, EXPLAIN_HEADING_TEXT),
                 bottom_box_fn=lambda: innermost_containing_box(
-                    page, "White outline: this cell"
+                    page, EXPLAIN_BOTTOM_ANCHOR
                 ),
             )
             saved.append(explain_path)

@@ -42,6 +42,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.explain import explain_cell
+from app.localities import ATTRIBUTION, load_cell_localities, locality_label
 
 import json
 import time
@@ -145,6 +146,10 @@ def load_static() -> gpd.GeoDataFrame:
     n_before = len(gdf)
     gdf = gdf.merge(mapping, on="grid_id", how="left")
     gdf = gdf.merge(sus, on="grid_id", how="left")
+    # Nearest OpenStreetMap place (app/localities.py): a reading aid, null beyond 3 km -> "unnamed".
+    localities = load_cell_localities()[["grid_id", "nearest_place"]]
+    gdf = gdf.merge(localities, on="grid_id", how="left", validate="one_to_one")
+    gdf["locality"] = gdf["nearest_place"].map(locality_label)
 
     matched = int(gdf["weather_point_id"].notna().sum())
     if matched / n_before < MIN_RISK_MATCH_FRACTION:
@@ -301,6 +306,7 @@ def build_folium_map(gdf: gpd.GeoDataFrame, review_min: int) -> folium.Map:
             "geometry": row["geometry"].__geo_interface__,
             "properties": {
                 "grid_id":         row["grid_id"],
+                "locality":        str(row["locality"]),
                 "priority":        (f"{level} {row['priority_name']}" if level else "No Data"),
                 "susceptibility":  str(row["susceptibility"]),
                 "trigger":         ("n/a" if pd.isna(row["trigger_prob"])
@@ -325,14 +331,14 @@ def build_folium_map(gdf: gpd.GeoDataFrame, review_min: int) -> folium.Map:
             "fillOpacity": feat["properties"]["fillOpacity"],
         },
         tooltip=folium.GeoJsonTooltip(
-            fields=["grid_id", "priority", "susceptibility", "trigger", "review"],
-            aliases=["Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue"],
+            fields=["locality", "grid_id", "priority", "susceptibility", "trigger", "review"],
+            aliases=["Locality", "Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue"],
             localize=True,
             sticky=True,
         ),
         popup=folium.GeoJsonPopup(
-            fields=["grid_id", "priority", "susceptibility", "trigger", "review", "lat", "lon"],
-            aliases=["Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue", "Lat", "Lon"],
+            fields=["locality", "grid_id", "priority", "susceptibility", "trigger", "review", "lat", "lon"],
+            aliases=["Locality", "Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue", "Lat", "Lon"],
             max_width=240,
         ),
         name="Risk Grid",
@@ -356,7 +362,8 @@ def build_folium_map(gdf: gpd.GeoDataFrame, review_min: int) -> folium.Map:
       <span style="border:2px solid #FF4444;padding:0 6px;">&nbsp;</span>&nbsp;Review queue: {review_min} ({review_name}) and above<br>
       <hr style="border-color:#445;margin:6px 0;">
       <span style="color:#888;font-size:10px;">Susceptibility class x trigger tier, from a lookup table<br>
-      (RandomForest trigger; slope + listed hazard sites)</span>
+      (RandomForest trigger; slope + listed hazard sites)<br>
+      Locality = nearest OpenStreetMap place. {ATTRIBUTION}</span>
     </div>
     """))
 
@@ -420,6 +427,7 @@ st.markdown("""
 [data-testid="stMetricLabel"] { color: #90caf9 !important; }
 h2 { color: #4fc3f7 !important; border-bottom: 1px solid #1e4a80; padding-bottom: 6px; }
 h3 { color: #81d4fa !important; }
+h4 { color: #b3e5fc !important; }
 .sidebar-caption { color: #607d8b; font-size: 11px; font-style: italic; }
 </style>
 """, unsafe_allow_html=True)
@@ -515,7 +523,10 @@ with st.sidebar:
         "local hill cut a 1 km average erases.<br><br>"
         "The lookup table (susceptibility class × trigger tier → priority "
         "level) is a team-assigned judgement, not a value from a published "
-        "study. It is written out in full in <code>app/config.py</code>."
+        "study. It is written out in full in <code>app/config.py</code>.<br><br>"
+        "<b>Locality</b> is the nearest OpenStreetMap place name to the cell "
+        "centre (within 3 km, otherwise \"unnamed\"). It is a reading aid only, "
+        "not an administrative area. " + ATTRIBUTION + "."
         "</p>",
         unsafe_allow_html=True,
     )
@@ -553,6 +564,11 @@ st_folium(
     height=520,
     returned_objects=[],
 )
+st.caption(
+    "Locality names are the nearest OpenStreetMap place to each cell centre "
+    "(within 3 km, otherwise \"unnamed\"), a reading aid only and not an "
+    "official area. Place names " + ATTRIBUTION + " (ODbL)."
+)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # WHY IS THIS CELL AT RISK? — EXPLAINABILITY PANEL
@@ -586,6 +602,9 @@ else:
             "Routine, Watch, Elevated or Critical."
         ),
     )
+
+    _locality = gdf.loc[gdf["grid_id"] == selected_grid, "locality"].iloc[0]
+    st.markdown(f"#### {selected_grid} - {_locality}")
 
     try:
         explanation = explain_cell(
@@ -738,7 +757,7 @@ if top10.empty:
     )
 else:
     display_df = top10[[
-        "grid_id", "centroid_lat", "centroid_lon",
+        "locality", "grid_id", "centroid_lat", "centroid_lon",
         "priority_level", "trigger_tier", "trigger_prob", "susceptibility",
     ]].copy()
     display_df["Priority"] = [
@@ -748,9 +767,9 @@ else:
         f"{t} · {p:.2f}" for t, p in zip(display_df["trigger_tier"], display_df["trigger_prob"])
     ]
     display_df = display_df.rename(columns={
-        "grid_id": "Grid ID", "centroid_lat": "Lat", "centroid_lon": "Lon",
+        "locality": "Locality", "grid_id": "Grid ID", "centroid_lat": "Lat", "centroid_lon": "Lon",
         "susceptibility": "Susceptibility",
-    })[["Grid ID", "Lat", "Lon", "Priority", "Trigger", "Susceptibility"]]
+    })[["Locality", "Grid ID", "Lat", "Lon", "Priority", "Trigger", "Susceptibility"]]
     display_df["Lat"] = display_df["Lat"].round(4)
     display_df["Lon"] = display_df["Lon"].round(4)
 

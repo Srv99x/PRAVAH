@@ -1,0 +1,1982 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-09-18T20:20:01Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/342100536",
+        "name": "Changsari",
+        "place": "village",
+        "wikidata": "Q5072106",
+        "wikipedia": "en:Changsari"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6963761,
+          26.263269
+        ]
+      },
+      "id": "node/342100536"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1698296623",
+        "name": "Fancy Bazaar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7362163,
+          26.1799322
+        ]
+      },
+      "id": "node/1698296623"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1698296637",
+        "name": "Kamakhya Dham",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7063761,
+          26.1664476
+        ]
+      },
+      "id": "node/1698296637"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2666919781",
+        "name": "Sijubari",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7781215,
+          26.1305008
+        ]
+      },
+      "id": "node/2666919781"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2885039361",
+        "name": "Amingaon",
+        "place": "suburb",
+        "wikidata": "Q4746415"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6699507,
+          26.1861581
+        ]
+      },
+      "id": "node/2885039361"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060539",
+        "name": "Bura Mayang",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0219298,
+          26.2666782
+        ]
+      },
+      "id": "node/3309060539"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060540",
+        "name": "Diprang",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.064847,
+          26.1989584
+        ]
+      },
+      "id": "node/3309060540"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060541",
+        "name": "Hilloikhunda",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0161284,
+          26.2773637
+        ]
+      },
+      "id": "node/3309060541"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060542",
+        "alt_name:en": "Mayong",
+        "name": "মায়ং",
+        "name:as": "মায়ং",
+        "name:en": "Mayang",
+        "name:hi": "मायंग",
+        "name:mr": "मायोंग",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0413225,
+          26.2591485
+        ]
+      },
+      "id": "node/3309060542"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060543",
+        "name": "Sanaka",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.9970744,
+          26.2677327
+        ]
+      },
+      "id": "node/3309060543"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309060544",
+        "name": "Sildubi",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0760722,
+          26.2424183
+        ]
+      },
+      "id": "node/3309060544"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309067377",
+        "name": "Bhaktagaon",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.1089832,
+          26.2300804
+        ]
+      },
+      "id": "node/3309067377"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309067378",
+        "name": "Bordia",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0704296,
+          26.2523205
+        ]
+      },
+      "id": "node/3309067378"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309067379",
+        "name": "Gobhali",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0064878,
+          26.2364513
+        ]
+      },
+      "id": "node/3309067379"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309067380",
+        "name": "Kajoli",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.9721634,
+          26.2512658
+        ]
+      },
+      "id": "node/3309067380"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3309067381",
+        "name": "Kamarpur",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0320315,
+          26.2223407
+        ]
+      },
+      "id": "node/3309067381"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4978970932",
+        "addr:postcode": "781019",
+        "name": "Bhagaduttapur",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7655542,
+          26.1352698
+        ]
+      },
+      "id": "node/4978970932"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5623038879",
+        "name": "North Guwahati",
+        "place": "suburb",
+        "wikidata": "Q2733384"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7184377,
+          26.1915072
+        ]
+      },
+      "id": "node/5623038879"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5623038882",
+        "name": "Sunchali",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8037641,
+          26.2040027
+        ]
+      },
+      "id": "node/5623038882"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5623038906",
+        "name": "Kurua",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8206191,
+          26.2376126
+        ]
+      },
+      "id": "node/5623038906"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6159117565",
+        "name": "Jatiya",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7798685,
+          26.1438881
+        ]
+      },
+      "id": "node/6159117565"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665840",
+        "alt_name": "Lokra",
+        "name": "Lokhra",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7491912,
+          26.1112218
+        ]
+      },
+      "id": "node/6160665840"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665841",
+        "name": "Sawkuchi",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.748763,
+          26.1234509
+        ]
+      },
+      "id": "node/6160665841"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665842",
+        "name": "Sonaighuli",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7488595,
+          26.1277952
+        ]
+      },
+      "id": "node/6160665842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665849",
+        "addr:postcode": "781019",
+        "name": "Dakhingaon",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7608222,
+          26.1311762
+        ]
+      },
+      "id": "node/6160665849"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665850",
+        "name": "Rajah Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7440842,
+          26.1274974
+        ]
+      },
+      "id": "node/6160665850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665851",
+        "name": "Ram Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7435945,
+          26.1255541
+        ]
+      },
+      "id": "node/6160665851"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665852",
+        "name": "Jyotikuchi",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7354268,
+          26.130561
+        ]
+      },
+      "id": "node/6160665852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665853",
+        "name": "Adagudam",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7367855,
+          26.136674
+        ]
+      },
+      "id": "node/6160665853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665854",
+        "name": "Barsapara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7391236,
+          26.1449422
+        ]
+      },
+      "id": "node/6160665854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665855",
+        "name": "Lalganesh",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7432469,
+          26.1415953
+        ]
+      },
+      "id": "node/6160665855"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665857",
+        "name": "Odalbakra",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7510039,
+          26.1401629
+        ]
+      },
+      "id": "node/6160665857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160665858",
+        "addr:postcode": "781019",
+        "name": "Bongshar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7599772,
+          26.1452117
+        ]
+      },
+      "id": "node/6160665858"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729422",
+        "name": "Kahilipara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7718397,
+          26.1445994
+        ]
+      },
+      "id": "node/6160729422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729423",
+        "name": "Rajeeb Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7763939,
+          26.1462871
+        ]
+      },
+      "id": "node/6160729423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729424",
+        "addr:postcode": "781019",
+        "name": "Kalyani Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7712905,
+          26.1392776
+        ]
+      },
+      "id": "node/6160729424"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729425",
+        "name": "Lakhmi Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7810211,
+          26.1410033
+        ]
+      },
+      "id": "node/6160729425"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729426",
+        "name": "Hatigaon",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7796601,
+          26.1325731
+        ]
+      },
+      "id": "node/6160729426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729427",
+        "name": "Juripar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7777719,
+          26.1361927
+        ]
+      },
+      "id": "node/6160729427"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729428",
+        "name": "Janakpur",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7747438,
+          26.1363607
+        ]
+      },
+      "id": "node/6160729428"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729429",
+        "name": "Notboma",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7727705,
+          26.132848
+        ]
+      },
+      "id": "node/6160729429"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729430",
+        "name": "Mulla Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7758666,
+          26.1263265
+        ]
+      },
+      "id": "node/6160729430"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729431",
+        "name": "Anupam Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7829093,
+          26.1277011
+        ]
+      },
+      "id": "node/6160729431"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729432",
+        "name": "Hatigaon Chariali",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7864162,
+          26.1290433
+        ]
+      },
+      "id": "node/6160729432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160729433",
+        "name": "Milan Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7859204,
+          26.1223095
+        ]
+      },
+      "id": "node/6160729433"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160749662",
+        "name": "Bhetapara Chariali",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7869102,
+          26.1200483
+        ]
+      },
+      "id": "node/6160749662"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160749663",
+        "name": "Bhetapara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7854832,
+          26.1180819
+        ]
+      },
+      "id": "node/6160749663"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160749664",
+        "name": "Sarboday Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7867489,
+          26.1131044
+        ]
+      },
+      "id": "node/6160749664"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160749671",
+        "name": "Lalmati",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7885229,
+          26.1118766
+        ]
+      },
+      "id": "node/6160749671"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160803210",
+        "name": "Six Mile",
+        "name:as": "ছয় মাইল",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8071854,
+          26.1309933
+        ]
+      },
+      "id": "node/6160803210"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160810152",
+        "name": "Beltola",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7990993,
+          26.1237215
+        ]
+      },
+      "id": "node/6160810152"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160810227",
+        "name": "Japorigog",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7887736,
+          26.1577574
+        ]
+      },
+      "id": "node/6160810227"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160810292",
+        "name": "Basistha Chariali",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7977943,
+          26.1121506
+        ]
+      },
+      "id": "node/6160810292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160815872",
+        "name": "Ambikagiri Nagar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7827667,
+          26.1691174
+        ]
+      },
+      "id": "node/6160815872"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160816885",
+        "name": "Zoo Rd Tiniali",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7774522,
+          26.1753871
+        ]
+      },
+      "id": "node/6160816885"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160817648",
+        "name": "Chandmari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7740906,
+          26.1841165
+        ]
+      },
+      "id": "node/6160817648"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160818202",
+        "name": "Gandh Basti",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7677744,
+          26.1812304
+        ]
+      },
+      "id": "node/6160818202"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160818822",
+        "name": "Noonmati Refinery",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8130252,
+          26.1836349
+        ]
+      },
+      "id": "node/6160818822"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160885078",
+        "name": "Hengrabari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8037298,
+          26.1508008
+        ]
+      },
+      "id": "node/6160885078"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160885941",
+        "name": "Ganeshguri",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7850121,
+          26.149571
+        ]
+      },
+      "id": "node/6160885941"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160886152",
+        "name": "Bhangagarh",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7695629,
+          26.165473
+        ]
+      },
+      "id": "node/6160886152"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160888960",
+        "name": "Guwahati Club",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.756824,
+          26.1849139
+        ]
+      },
+      "id": "node/6160888960"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160896263",
+        "name": "Narengi",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8292896,
+          26.1762413
+        ]
+      },
+      "id": "node/6160896263"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160897372",
+        "name": "Gitanagar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7937356,
+          26.1741894
+        ]
+      },
+      "id": "node/6160897372"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6160897853",
+        "name": "Pathar Quarry",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8298545,
+          26.1684939
+        ]
+      },
+      "id": "node/6160897853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161163702",
+        "name": "Jalukbari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.671224,
+          26.1554983
+        ]
+      },
+      "id": "node/6161163702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161184929",
+        "name": "Borbari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8090488,
+          26.1579771
+        ]
+      },
+      "id": "node/6161184929"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161186018",
+        "name": "Mathgharia",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.811193,
+          26.1759804
+        ]
+      },
+      "id": "node/6161186018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161187086",
+        "name": "Noonmati",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7998576,
+          26.1979372
+        ]
+      },
+      "id": "node/6161187086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161187087",
+        "name": "Ambari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7539777,
+          26.1845663
+        ]
+      },
+      "id": "node/6161187087"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161187286",
+        "name": "Silpukhuri",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7630711,
+          26.1843424
+        ]
+      },
+      "id": "node/6161187286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161187904",
+        "name": "Pan Bazar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7472508,
+          26.1853214
+        ]
+      },
+      "id": "node/6161187904"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161189285",
+        "name": "Machkhowa",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.734023,
+          26.1755052
+        ]
+      },
+      "id": "node/6161189285"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161189988",
+        "name": "Bharalumukh",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7292129,
+          26.1716385
+        ]
+      },
+      "id": "node/6161189988"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6161196685",
+        "name": "Birubari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7522351,
+          26.1611819
+        ]
+      },
+      "id": "node/6161196685"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163736922",
+        "name": "Chandmari Colony",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7698115,
+          26.1850334
+        ]
+      },
+      "id": "node/6163736922"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163737300",
+        "name": "Paltan Bazar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7525068,
+          26.1794742
+        ]
+      },
+      "id": "node/6163737300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163737941",
+        "name": "Islumpur",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7584726,
+          26.1842213
+        ]
+      },
+      "id": "node/6163737941"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163738316",
+        "name": "Railway Colony",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7824864,
+          26.1808827
+        ]
+      },
+      "id": "node/6163738316"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163741920",
+        "name": "Shantipur",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7275191,
+          26.1659951
+        ]
+      },
+      "id": "node/6163741920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163757445",
+        "name": "Jaya Nagar",
+        "name:as": "জয়ানগৰ",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8087201,
+          26.1292012
+        ]
+      },
+      "id": "node/6163757445"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163762077",
+        "name": "Sarusajai",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7605013,
+          26.1100577
+        ]
+      },
+      "id": "node/6163762077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163766750",
+        "name": "Bongaon",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7933853,
+          26.1177701
+        ]
+      },
+      "id": "node/6163766750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163767936",
+        "name": "Games Village",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7893151,
+          26.1077001
+        ]
+      },
+      "id": "node/6163767936"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163768359",
+        "name": "Kundil Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7967993,
+          26.1144471
+        ]
+      },
+      "id": "node/6163768359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163770086",
+        "name": "Surabh Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8016499,
+          26.1214231
+        ]
+      },
+      "id": "node/6163770086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163772934",
+        "name": "Krishnapur",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8013781,
+          26.1140558
+        ]
+      },
+      "id": "node/6163772934"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163773241",
+        "name": "Navoday Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8033458,
+          26.1099022
+        ]
+      },
+      "id": "node/6163773241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163776904",
+        "name": "Khanapara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.810908,
+          26.125094
+        ]
+      },
+      "id": "node/6163776904"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163777548",
+        "name": "Resham Nagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8112074,
+          26.1190281
+        ]
+      },
+      "id": "node/6163777548"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163778589",
+        "name": "Rukimininagar",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7993281,
+          26.1364298
+        ]
+      },
+      "id": "node/6163778589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163779126",
+        "name": "Super Market",
+        "place": "neighbourhood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7954856,
+          26.1409862
+        ]
+      },
+      "id": "node/6163779126"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163780722",
+        "name": "Wireless",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7924167,
+          26.1348495
+        ]
+      },
+      "id": "node/6163780722"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6163786073",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7779813,
+          26.1182551
+        ]
+      },
+      "id": "node/6163786073"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168594201",
+        "name": "Bamunimaidam",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7886629,
+          26.1852211
+        ]
+      },
+      "id": "node/6168594201"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168597952",
+        "name": "Ulubari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7576927,
+          26.175003
+        ]
+      },
+      "id": "node/6168597952"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168646060",
+        "name": "Aathgaon",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7401827,
+          26.1691075
+        ]
+      },
+      "id": "node/6168646060"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168654474",
+        "name": "Rehabari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.751208,
+          26.1702255
+        ]
+      },
+      "id": "node/6168654474"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168655878",
+        "name": "Fatasil Ambari",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7344457,
+          26.1582623
+        ]
+      },
+      "id": "node/6168655878"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168657391",
+        "name": "Rajbhawan",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7640008,
+          26.1967021
+        ]
+      },
+      "id": "node/6168657391"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168658413",
+        "name": "Dhirenpara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7291425,
+          26.1502556
+        ]
+      },
+      "id": "node/6168658413"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168663966",
+        "name": "Christian Basti",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7796261,
+          26.1541815
+        ]
+      },
+      "id": "node/6168663966"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168664036",
+        "name": "Ananda Nagar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7706055,
+          26.1576559
+        ]
+      },
+      "id": "node/6168664036"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168664670",
+        "name": "Satgaon",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.8385701,
+          26.158949
+        ]
+      },
+      "id": "node/6168664670"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168664671",
+        "name": "Bonda Gaon",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.841936,
+          26.1806993
+        ]
+      },
+      "id": "node/6168664671"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6168671977",
+        "name": "Anil Nagar",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7731606,
+          26.1673224
+        ]
+      },
+      "id": "node/6168671977"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6169689391",
+        "alt_name:hi": "चंद्रपुर",
+        "name": "Chandrapur",
+        "name:hi": "चन्द्रपुर",
+        "name:pa": "ਚੰਦਰਪੁਰ",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.9258814,
+          26.2351111
+        ]
+      },
+      "id": "node/6169689391"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6884791085",
+        "name": "Paltan Baazar",
+        "name:bn": "পল্টন বাজার",
+        "place": "neighbourhood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.750173,
+          26.1810484
+        ]
+      },
+      "id": "node/6884791085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7159263816",
+        "name": "Azara",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6164279,
+          26.1211108
+        ]
+      },
+      "id": "node/7159263816"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8041812492",
+        "name": "Ghoramara Chariali",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7788451,
+          26.1206544
+        ]
+      },
+      "id": "node/8041812492"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8325113487",
+        "name": "Kheraikuchi",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7700729,
+          26.1212939
+        ]
+      },
+      "id": "node/8325113487"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9714359605",
+        "name": "Gandhi Basti",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7619396,
+          26.1815474
+        ]
+      },
+      "id": "node/9714359605"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10023328692",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0897135,
+          26.073112
+        ]
+      },
+      "id": "node/10023328692"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10023328693",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0892065,
+          26.0042358
+        ]
+      },
+      "id": "node/10023328693"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10023328694",
+        "place": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0961897,
+          25.993775
+        ]
+      },
+      "id": "node/10023328694"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12082230957",
+        "name": "Pandu",
+        "place": "suburb",
+        "wikidata": "Q7130750"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6806078,
+          26.1634597
+        ]
+      },
+      "id": "node/12082230957"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12082267422",
+        "name": "Railway Colony",
+        "place": "suburb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.6997373,
+          26.1516147
+        ]
+      },
+      "id": "node/12082267422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12847009719",
+        "addr:postcode": "781034",
+        "name": "Pub Suruj Nagar",
+        "place": "neighbourhood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.7555192,
+          26.13692
+        ]
+      },
+      "id": "node/12847009719"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12875788254",
+        "name": "Bleshāh",
+        "name:en": "Bleshah",
+        "place": "hamlet",
+        "source:name": "SOI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0084596,
+          25.981165
+        ]
+      },
+      "id": "node/12875788254"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12875788255",
+        "name": "Bleshāh",
+        "name:en": "Bleshah",
+        "place": "hamlet",
+        "source:name": "SOI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0068073,
+          25.9803741
+        ]
+      },
+      "id": "node/12875788255"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/14191548568",
+        "name": "Survey",
+        "place": "quarter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.795457,
+          26.1294541
+        ]
+      },
+      "id": "node/14191548568"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/14191593758",
+        "name": "Last Gate",
+        "place": "neighbourhood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.790114,
+          26.1391159
+        ]
+      },
+      "id": "node/14191593758"
+    }
+  ]
+}
