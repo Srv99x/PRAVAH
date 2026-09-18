@@ -451,7 +451,7 @@ def build_summary(
 
     if floor_source == "asdma":
         susceptibility_reason = (
-            "an officially identified ASDMA vulnerable location"
+            "a listed hazard site"
         )
     elif floor_source == "incident":
         susceptibility_reason = (
@@ -459,7 +459,7 @@ def build_summary(
         )
     elif floor_source == "both":
         susceptibility_reason = (
-            "an ASDMA vulnerable location and a verified historical incident"
+            "a listed hazard site and a verified historical incident"
         )
     else:
         susceptibility_reason = (
@@ -670,7 +670,7 @@ def explain_cell(
     if hazard_floor_applied and floor_source is None:
         raise ValueError(
             f"{grid_id} is marked hazard_floor_applied=True, "
-            "but no ASDMA/incident spatial source was found."
+            "but no listed-hazard-site/incident spatial source was found."
         )
 
     # ---------------------------------------------------------------
@@ -679,7 +679,7 @@ def explain_cell(
     if hazard_floor_applied:
         if floor_source == "asdma":
             source_text = (
-                "an officially identified ASDMA vulnerable location"
+                "a listed hazard site"
             )
         elif floor_source == "incident":
             source_text = (
@@ -687,8 +687,7 @@ def explain_cell(
             )
         elif floor_source == "both":
             source_text = (
-                "an officially identified ASDMA vulnerable location "
-                "and a verified historical incident"
+                "a listed hazard site and a verified historical incident"
             )
         else:
             source_text = "an identified hazard source"
@@ -698,6 +697,11 @@ def explain_cell(
             f"is floored to {susceptibility_class} regardless of "
             f"average slope."
         )
+        if floor_source in ("incident", "both"):
+            susceptibility_text += (
+                " Note: this cell also supplied training labels, so its "
+                "own score is not independent evidence."
+            )
     else:
         susceptibility_text = (
             f"This cell averages {slope_mean:.1f} degrees slope, "

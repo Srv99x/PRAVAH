@@ -64,7 +64,7 @@ from mqtt_sim import get_sensor_readings  # noqa: E402
 # PAGE CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
 st.set_page_config(
-    page_title="PRAVAH — Kamrup Metro Early Warning",
+    page_title="PRAVAH — Kamrup Metro Priority Queue",
     page_icon="🌊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -341,8 +341,7 @@ def build_folium_map(gdf: gpd.GeoDataFrame, threshold: float) -> folium.Map:
       <span style="background:#C62828;padding:2px 8px;">&nbsp;</span>&nbsp;Tier 4 &middot; 0.75&ndash;1.00<br>
       <span style="background:#808080;padding:2px 8px;">&nbsp;</span>&nbsp;No DEM data<br>
       <hr style="border-color:#445;margin:6px 0;">
-      <span style="color:#888;font-size:10px;">RandomForest trigger &times; susceptibility<br>
-      (terrain + ASDMA official hazard list)</span>
+      <span style="color:#888;font-size:10px;">RandomForest trigger x susceptibility (slope + listed hazard sites)</span>
     </div>
     """))
 
@@ -383,7 +382,7 @@ h3 { color: #81d4fa !important; }
 
 with st.sidebar:
     st.markdown("## 🌊 PRAVAH")
-    st.markdown("**Kamrup Metro District Early Warning**")
+    st.markdown("**Kamrup Metro - district priority queue (prototype)**")
     st.markdown("*SIH 2026 — Flash Flood Prediction System*")
     st.divider()
 
@@ -451,10 +450,10 @@ with st.sidebar:
         "ERA5-Land soil moisture and antecedent precipitation, labelled from "
         "rainfall intensity–duration thresholds plus 7 verified "
         "landslide/flood incidents (2022–2025).<br><br>"
-        "<b>Susceptibility is terrain-derived, floored by ASDMA's officially "
-        "identified vulnerable locations.</b> That means a cell can show high "
-        "risk because it appears on Assam's official vulnerable-locations "
-        "list, not only because the terrain model inferred it. We do this "
+        "<b>Susceptibility is terrain-derived, floored by listed hazard "
+        "sites.</b> That means a cell can show high "
+        "risk because it appears on the listed hazard sites, "
+        "not only because the terrain model inferred it. We do this "
         "because 1 km mean slope alone ranks these cells wrongly: every "
         "documented landslide site in the district sits in a cell that is "
         "flatter than the district average, since the failure happens on a "
@@ -614,8 +613,11 @@ else:
 st.caption(
     "**Priority index = RandomForest dynamic trigger × susceptibility "
     "multiplier**, shown on a 0.00–1.00 scale. "
-    "Susceptibility is terrain-derived (SRTM slope) and **floored by ASDMA's "
-    "officially identified vulnerable locations** — 34 of 904 cells are raised "
+    "Susceptibility is terrain-derived (SRTM slope) and "
+    "**floored at cells containing a listed hazard site or a dated "
+    "incident**. The hazard list is 47 locations compiled from news "
+    "reports and official sources; per-row source in "
+    "`data/raw/asdma_vulnerable_locations.csv`. 34 of 904 cells are raised "
     "to at least *High* on that basis. Multipliers are team-assigned weights "
     "calibrated to this district's slope distribution, not values from a "
     "published study.  "
@@ -630,7 +632,8 @@ st.caption(
 # ══════════════════════════════════════════════════════════════════════════════
 
 st.markdown("---")
-st.markdown("## ⚠️ Active Early Warnings")
+st.markdown("## ⚠️ Ranked review queue")
+st.caption("Historical replay - no forecast lead time. Ranking only.")
 
 above_thresh = gdf[gdf["risk_probability"] >= threshold]
 top10        = above_thresh.nlargest(10, "risk_probability")
