@@ -1,12 +1,13 @@
 """
 Per-cell plain-English explanation for the Flash Flood Risk app.
 
-This module explains the two components of the production risk score:
+This module explains how a cell's priority is decided:
 
-    final_risk = trigger_probability * susceptibility_multiplier
+    priority = PRIORITY_MATRIX[susceptibility class][trigger tier]
 
-The dynamic trigger comes from the existing RandomForest model and the
-static susceptibility comes from the existing susceptibility parquet.
+(the table lives in app/config.py). The dynamic trigger comes from the
+existing RandomForest model and the static susceptibility comes from the
+existing susceptibility parquet.
 
 No LLM or external API is used.
 """
@@ -21,7 +22,14 @@ import geopandas as gpd
 import pandas as pd
 import streamlit as st
 
-from app.config import SUSCEPTIBILITY_MULTIPLIERS
+from app.config import (
+    PRIORITY_NAMES,
+    REVIEW_MIN_PRIORITY,
+    SUSCEPTIBILITY_ORDER,
+    TRIGGER_TIER_WORDS,
+    priority_level,
+    trigger_tier,
+)
 from app.susceptibility_utils import cells_containing_points
 
 
@@ -32,19 +40,6 @@ from app.susceptibility_utils import cells_containing_points
 PROCESSED_DIR = Path("data/processed")
 RAW_DIR = Path("data/raw")
 MODEL_PATH = Path("models/random_forest_trigger_model.pkl")
-
-
-# ---------------------------------------------------------------------------
-# Production susceptibility multipliers live in app/config.py (imported above).
-# ---------------------------------------------------------------------------
-
-
-# ---------------------------------------------------------------------------
-# Production severity bands from app/streamlit_app.py
-# ---------------------------------------------------------------------------
-
-RISK_BINS = [0.0, 0.25, 0.50, 0.75, 1.01]
-RISK_LABELS = ["Low", "Medium", "High", "Severe"]
 
 
 MODEL_FEATURES = [
@@ -72,14 +67,6 @@ FEATURE_UNITS = {
     "api_3d": "mm",
     "api_7d": "mm",
 }
-
-
-def get_severity(risk_score: float) -> str:
-    """Return the same severity label used by the Streamlit map."""
-    for upper_bound, label in zip(RISK_BINS[1:], RISK_LABELS):
-        if risk_score < upper_bound:
-            return label
-    return RISK_LABELS[-1]
 
 
 @st.cache_data(show_spinner=False)
@@ -440,48 +427,68 @@ def build_trigger_text(
     return "\n".join(lines)
 
 
+def build_decision_text(
+    susceptibility_class: str,
+    tier: str,
+    level: int,
+    review_min_priority: int,
+) -> str:
+    """State the matrix lookup and the review-queue outcome in words."""
+    name = PRIORITY_NAMES[level]
+    review_name = PRIORITY_NAMES[review_min_priority]
+    if level >= review_min_priority:
+        outcome = (
+            f"which is at or above the review level ({review_name}), "
+            "so this cell is in the review queue"
+        )
+    else:
+        outcome = (
+            f"which is below the review level ({review_name}), "
+            "so this cell is not in the review queue"
+        )
+    return (
+        f"The decision matrix maps {susceptibility_class} susceptibility "
+        f"with a {tier} trigger to priority level {level} of "
+        f"{len(PRIORITY_NAMES)} ({name}), {outcome}."
+    )
+
+
 def build_summary(
-    severity: str,
     trigger_probability: float,
     susceptibility_class: str,
     floor_source: str | None,
+    tier: str,
+    level: int,
+    review_min_priority: int,
 ) -> str:
-    """Build a concise plain-English summary."""
-    risk_percent = trigger_probability * 100
-
+    """Build a plain-English summary naming both tiers and the resulting priority."""
     if floor_source == "asdma":
-        susceptibility_reason = (
-            "a listed hazard site"
-        )
+        susceptibility_reason = "a listed hazard site"
     elif floor_source == "incident":
-        susceptibility_reason = (
-            "a verified historical incident location"
-        )
+        susceptibility_reason = "a verified historical incident"
     elif floor_source == "both":
         susceptibility_reason = (
             "a listed hazard site and a verified historical incident"
         )
     else:
-        susceptibility_reason = (
-            f"{susceptibility_class.lower()} terrain susceptibility"
-        )
-
-    if trigger_probability == 0.0:
-        return (
-            "No elevated priority: the dynamic trigger is 0.00 "
-            "for this date, so the final priority index is 0.0."
-        )
+        susceptibility_reason = "terrain slope"
 
     return (
-        f"{severity.upper()} PRIORITY: This cell is affected by "
-        f"{susceptibility_reason} and has a {trigger_probability:.2f} "
-        f"dynamic trigger."
+        f"{PRIORITY_NAMES[level].upper()} PRIORITY (level {level} of "
+        f"{len(PRIORITY_NAMES)}): this cell has {susceptibility_class} "
+        f"susceptibility (from {susceptibility_reason}), and the dynamic "
+        f"trigger is {trigger_probability:.2f}, which is trigger tier {tier} "
+        f"({TRIGGER_TIER_WORDS[tier]}). "
+        + build_decision_text(
+            susceptibility_class, tier, level, review_min_priority
+        )
     )
 
 
 def explain_cell(
     grid_id: str,
     date: str,
+    review_min_priority: int = REVIEW_MIN_PRIORITY,
 ) -> dict:
     """
     Explain the production risk for one grid cell and date.
@@ -492,6 +499,9 @@ def explain_cell(
         Existing grid identifier.
     date:
         ISO date string, e.g. '2025-05-30'.
+    review_min_priority:
+        Lowest priority level (1-4) that counts as "in the review queue".
+        Defaults to the rule-selected REVIEW_MIN_PRIORITY in app/config.py.
 
     Returns
     -------
@@ -586,15 +596,11 @@ def explain_cell(
         susceptibility_class
     )
 
-    if susceptibility_class not in SUSCEPTIBILITY_MULTIPLIERS:
+    if susceptibility_class not in SUSCEPTIBILITY_ORDER:
         raise ValueError(
             f"Unknown susceptibility class: "
             f"{susceptibility_class}"
         )
-
-    susceptibility_multiplier = SUSCEPTIBILITY_MULTIPLIERS[
-        susceptibility_class
-    ]
 
     hazard_floor_applied = bool(
         susceptibility_row["hazard_floor_applied"]
@@ -647,16 +653,10 @@ def explain_cell(
     )
 
     # ---------------------------------------------------------------
-    # Final risk
+    # Priority from the decision matrix
     # ---------------------------------------------------------------
-    final_risk_score = (
-        trigger_probability
-        * susceptibility_multiplier
-    )
-
-    severity = get_severity(
-        final_risk_score
-    )
+    tier = trigger_tier(trigger_probability)
+    level = priority_level(susceptibility_class, trigger_probability)
 
     # ---------------------------------------------------------------
     # Hazard-floor source
@@ -717,10 +717,15 @@ def explain_cell(
     )
 
     summary = build_summary(
-        severity=severity,
         trigger_probability=trigger_probability,
         susceptibility_class=susceptibility_class,
         floor_source=floor_source,
+        tier=tier,
+        level=level,
+        review_min_priority=review_min_priority,
+    )
+    decision_text = build_decision_text(
+        susceptibility_class, tier, level, review_min_priority
     )
 
     return {
@@ -731,12 +736,16 @@ def explain_cell(
         "peak_timestamp": peak_timestamp.isoformat(),
         "trigger_prob": trigger_probability,
         "susceptibility_class": susceptibility_class,
-        "susceptibility_multiplier": susceptibility_multiplier,
         "hazard_floor_applied": hazard_floor_applied,
         "floor_source": floor_source,
         "slope_mean": slope_mean,
-        "final_risk_score": final_risk_score,
-        "severity": severity,
+        "trigger_tier": tier,
+        "trigger_tier_words": TRIGGER_TIER_WORDS[tier],
+        "priority_level": level,
+        "priority_name": PRIORITY_NAMES[level],
+        "review_min_priority": review_min_priority,
+        "in_review_queue": level >= review_min_priority,
+        "decision_text": decision_text,
         "actual_features": actual_features,
         "baselines": baselines,
         "feature_comparisons": comparisons,

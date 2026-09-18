@@ -409,7 +409,7 @@ def main() -> None:
                 explain_path,
                 top_box_fn=lambda: leaf_exact_box(page, EXPLAIN_HEADING_TEXT),
                 bottom_box_fn=lambda: innermost_containing_box(
-                    page, "7-day antecedent rainfall"
+                    page, "White outline: this cell"
                 ),
             )
             saved.append(explain_path)
