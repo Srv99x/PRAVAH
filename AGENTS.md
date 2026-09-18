@@ -7,3 +7,4 @@ PROJECT RULES (PRAVAH, SIH26192)
 - Telemetry is SIMULATED unless a real device is connected; label it.
 - Do not use models/random_forest_trigger_model.pkl for evaluation (it was trained on a different split).
 - Do not touch files outside the task's scope. Run tests before finishing.
+- Always run Python via venv\Scripts\python.exe (scikit-learn 1.9.0). The global interpreter has 1.8.0 and will not reproduce docs/evaluation_cv.json.

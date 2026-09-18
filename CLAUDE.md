@@ -176,3 +176,4 @@ requirements.txt
 - Prefer explicit, readable code over clever code. Teammates with limited tooling experience must be able to read it.
 - If a step is taking longer than its value justifies given the 31 Aug deadline, say so and propose the fallback from §9.
 - Flag clearly when a task needs **me** (the human) to do something: download a file behind a login, verify a portal visually, make a scope call.
+- Always run Python via venv\Scripts\python.exe (scikit-learn 1.9.0). The global interpreter has 1.8.0 and will not reproduce docs/evaluation_cv.json.
