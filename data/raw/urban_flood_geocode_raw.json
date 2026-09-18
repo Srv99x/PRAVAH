@@ -1,0 +1,1125 @@
+{
+ "Chandmari": [
+  {
+   "place_id": 239589949,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160817648,
+   "lat": "26.1841165",
+   "lon": "91.7740906",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Chandmari",
+   "display_name": "Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1641165",
+    "26.2041165",
+    "91.7540906",
+    "91.7940906"
+   ]
+  }
+ ],
+ "Maligaon": [
+  {
+   "place_id": 242094532,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6163787851,
+   "lat": "26.1600453",
+   "lon": "91.6958086",
+   "category": "place",
+   "type": "town",
+   "place_rank": 18,
+   "importance": 0.16004500114442663,
+   "addresstype": "town",
+   "name": "Maligaon",
+   "display_name": "Maligaon, Guwahati, Kamrup Metropolitan, Assam, 781010, India",
+   "boundingbox": [
+    "26.1200453",
+    "26.2000453",
+    "91.6558086",
+    "91.7358086"
+   ]
+  }
+ ],
+ "Hatigaon": [
+  {
+   "place_id": 242123661,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160729426,
+   "lat": "26.1325731",
+   "lon": "91.7796601",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Hatigaon",
+   "display_name": "Hatigaon, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1125731",
+    "26.1525731",
+    "91.7596601",
+    "91.7996601"
+   ]
+  }
+ ],
+ "Beltola": [
+  {
+   "place_id": 242273750,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160810152,
+   "lat": "26.1237215",
+   "lon": "91.7990993",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Beltola",
+   "display_name": "Beltola, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1037215",
+    "26.1437215",
+    "91.7790993",
+    "91.8190993"
+   ]
+  }
+ ],
+ "Lachit Nagar": [
+  {
+   "place_id": 242440055,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 508323964,
+   "lat": "26.1379392",
+   "lon": "91.8076613",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Veer Lachit Path",
+   "display_name": "Veer Lachit Path, Jaya Nagar, Six Mile, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1374579",
+    "26.1384163",
+    "91.8076484",
+    "91.8076876"
+   ]
+  },
+  {
+   "place_id": 242550834,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 508672344,
+   "lat": "26.1679811",
+   "lon": "91.7687963",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Lachit Lane",
+   "display_name": "Lachit Lane, Bhangagarh, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1677842",
+    "26.1681444",
+    "91.7680880",
+    "91.7694947"
+   ]
+  },
+  {
+   "place_id": 242403011,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 421483068,
+   "lat": "26.1280619",
+   "lon": "91.7911469",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Bir Lachit Path",
+   "display_name": "Bir Lachit Path, Survey, Wireless, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1267395",
+    "26.1293858",
+    "91.7910718",
+    "91.7912006"
+   ]
+  },
+  {
+   "place_id": 239434928,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11868980082,
+   "lat": "26.1729450",
+   "lon": "91.7615399",
+   "category": "office",
+   "type": "ngo",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "office",
+   "name": "Lachit Jyoti Mahila Samity",
+   "display_name": "Lachit Jyoti Mahila Samity, Lachit Nagar Road, Gandh Basti, Ulubari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1728950",
+    "26.1729950",
+    "91.7614899",
+    "91.7615899"
+   ]
+  },
+  {
+   "place_id": 242550974,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11868784668,
+   "lat": "26.1729877",
+   "lon": "91.7626376",
+   "category": "shop",
+   "type": "tailor",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "shop",
+   "name": "New Lachit Tailors",
+   "display_name": "New Lachit Tailors, Lachit Nagar Road, Gandh Basti, Ulubari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1729377",
+    "26.1730377",
+    "91.7625876",
+    "91.7626876"
+   ]
+  },
+  {
+   "place_id": 242555251,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12973082001,
+   "lat": "26.1731586",
+   "lon": "91.7617607",
+   "category": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "amenity",
+   "name": "lachit nagar primary school",
+   "display_name": "lachit nagar primary school, Lachit Nagar Road, Gandh Basti, Ulubari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1731086",
+    "26.1732086",
+    "91.7617107",
+    "91.7618107"
+   ]
+  }
+ ],
+ "Rukminigaon": [
+  {
+   "place_id": 240682649,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11378891569,
+   "lat": "26.1357773",
+   "lon": "91.8028665",
+   "category": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "highway",
+   "name": "Rukminigaon",
+   "display_name": "Rukminigaon, Mahapurush Srimanta Sankardeva Path, Super Market, Rukimininagar, Six Mile, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1357273",
+    "26.1358273",
+    "91.8028165",
+    "91.8029165"
+   ]
+  }
+ ],
+ "GS Road": [],
+ "Zoo Road": [
+  {
+   "place_id": 240949305,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 543647063,
+   "lat": "26.1687278",
+   "lon": "91.7787922",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Zoo Road Flyover",
+   "display_name": "Zoo Road Flyover, Zoo Rd Tiniali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1601958",
+    "26.1772486",
+    "91.7759447",
+    "91.7816138"
+   ]
+  },
+  {
+   "place_id": 242361779,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1267019488,
+   "lat": "26.1475009",
+   "lon": "91.7861039",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Zoo road",
+   "display_name": "Zoo road, Jatiya, Ganeshguri, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1452496",
+    "26.1496491",
+    "91.7852979",
+    "91.7865589"
+   ]
+  },
+  {
+   "place_id": 242329561,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1316345603,
+   "lat": "26.1781804",
+   "lon": "91.7756097",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Radha Gobinda Baruah Road",
+   "display_name": "Radha Gobinda Baruah Road, Zoo Rd Tiniali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1774721",
+    "26.1789131",
+    "91.7755290",
+    "91.7758150"
+   ]
+  },
+  {
+   "place_id": 239591188,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1316345599,
+   "lat": "26.1600902",
+   "lon": "91.7815949",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Zoo Road Flyover",
+   "display_name": "Zoo Road Flyover, Christian Basti, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1599873",
+    "26.1601931",
+    "91.7815563",
+    "91.7816334"
+   ]
+  },
+  {
+   "place_id": 239455744,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 565369280,
+   "lat": "26.1567873",
+   "lon": "91.7828236",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Radha Gobinda Baruah Road",
+   "display_name": "Radha Gobinda Baruah Road, Rajeeb Nagar, Christian Basti, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1535401",
+    "26.1600294",
+    "91.7816785",
+    "91.7839562"
+   ]
+  }
+ ],
+ "RG Baruah Road": [],
+ "Nabin Nagar": [],
+ "Anil Nagar": [
+  {
+   "place_id": 242319947,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6168671977,
+   "lat": "26.1673224",
+   "lon": "91.7731606",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Anil Nagar",
+   "display_name": "Anil Nagar, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1473224",
+    "26.1873224",
+    "91.7531606",
+    "91.7931606"
+   ]
+  }
+ ],
+ "Ganeshguri": [
+  {
+   "place_id": 239542048,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160885941,
+   "lat": "26.1495710",
+   "lon": "91.7850121",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Ganeshguri",
+   "display_name": "Ganeshguri, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1295710",
+    "26.1695710",
+    "91.7650121",
+    "91.8050121"
+   ]
+  },
+  {
+   "place_id": 242347805,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12006328568,
+   "lat": "26.1472804",
+   "lon": "91.7879674",
+   "category": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "highway",
+   "name": "Ganeshguri",
+   "display_name": "Ganeshguri, Mahapurush Srimanta Sankardeva Path, Jatiya, Ganeshguri, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1472304",
+    "26.1473304",
+    "91.7879174",
+    "91.7880174"
+   ]
+  },
+  {
+   "place_id": 240603980,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6163808334,
+   "lat": "26.1527936",
+   "lon": "91.7842727",
+   "category": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "highway",
+   "name": "Ganeshguri",
+   "display_name": "Ganeshguri, Radha Gobinda Baruah Road, Jatiya, Ganeshguri, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1527436",
+    "26.1528436",
+    "91.7842227",
+    "91.7843227"
+   ]
+  }
+ ],
+ "Hedayetpur": [],
+ "MLA Quarters Dispur": [],
+ "Tarun Nagar": [
+  {
+   "place_id": 242078202,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 543624679,
+   "lat": "26.1613244",
+   "lon": "91.7750352",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Tarun Nagar Road",
+   "display_name": "Tarun Nagar Road, Bhangagarh, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1598413",
+    "26.1622236",
+    "91.7718163",
+    "91.7781167"
+   ]
+  },
+  {
+   "place_id": 242141101,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 301153882,
+   "lat": "26.1636526",
+   "lon": "91.7724926",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Tarun Nagar Bylane 1",
+   "display_name": "Tarun Nagar Bylane 1, Anil Nagar, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1620967",
+    "26.1652557",
+    "91.7718574",
+    "91.7730293"
+   ]
+  },
+  {
+   "place_id": 242162563,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1267016747,
+   "lat": "26.1595269",
+   "lon": "91.7787759",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Tarun Nagar Road",
+   "display_name": "Tarun Nagar Road, Christian Basti, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1591648",
+    "26.1598413",
+    "91.7781167",
+    "91.7794095"
+   ]
+  }
+ ],
+ "Jyotikuchi": [
+  {
+   "place_id": 242284856,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160665852,
+   "lat": "26.1305610",
+   "lon": "91.7354268",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Jyotikuchi",
+   "display_name": "Jyotikuchi, Dispur, Kamrup Metropolitan, Assam, 781025, India",
+   "boundingbox": [
+    "26.1105610",
+    "26.1505610",
+    "91.7154268",
+    "91.7554268"
+   ]
+  }
+ ],
+ "Ghoramara": [
+  {
+   "place_id": 240683244,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 8041812492,
+   "lat": "26.1206544",
+   "lon": "91.7788451",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Ghoramara Chariali",
+   "display_name": "Ghoramara Chariali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1006544",
+    "26.1406544",
+    "91.7588451",
+    "91.7988451"
+   ]
+  }
+ ],
+ "VIP Road": [
+  {
+   "place_id": 242349568,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 405840604,
+   "lat": "26.1598959",
+   "lon": "91.8193206",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "VIP Road",
+   "display_name": "VIP Road, Narengi, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1430672",
+    "26.1783744",
+    "91.8112663",
+    "91.8306098"
+   ]
+  },
+  {
+   "place_id": 240683436,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 405840603,
+   "lat": "26.1402322",
+   "lon": "91.8115068",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "VIP Road",
+   "display_name": "VIP Road, Jaya Nagar, Six Mile, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1318352",
+    "26.1494901",
+    "91.8086244",
+    "91.8121113"
+   ]
+  }
+ ],
+ "Rajgarh Road": [
+  {
+   "place_id": 241662407,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1135617344,
+   "lat": "26.1702498",
+   "lon": "91.7706021",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Gandh Basti, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1668936",
+    "26.1735774",
+    "91.7690934",
+    "91.7721629"
+   ]
+  },
+  {
+   "place_id": 240686468,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1135617345,
+   "lat": "26.1767638",
+   "lon": "91.7734819",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Zoo Rd Tiniali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1735774",
+    "26.1801288",
+    "91.7721629",
+    "91.7742398"
+   ]
+  },
+  {
+   "place_id": 242348401,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 588785833,
+   "lat": "26.1815655",
+   "lon": "91.7744252",
+   "category": "highway",
+   "type": "unclassified",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Chandmari Colony, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1801400",
+    "26.1828920",
+    "91.7741516",
+    "91.7746789"
+   ]
+  },
+  {
+   "place_id": 240685422,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1343462017,
+   "lat": "26.1658944",
+   "lon": "91.7686531",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Bhangagarh, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1653929",
+    "26.1664089",
+    "91.7683725",
+    "91.7689034"
+   ]
+  }
+ ],
+ "Jorabat": [
+  {
+   "place_id": 242046795,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 566672798,
+   "lat": "26.0993157",
+   "lon": "91.8773204",
+   "category": "place",
+   "type": "town",
+   "place_rank": 18,
+   "importance": 0.18929199030239088,
+   "addresstype": "town",
+   "name": "Jorabat",
+   "display_name": "Jorabat, Sonapur, Kamrup Metropolitan, Assam, 782423, India",
+   "boundingbox": [
+    "26.0593157",
+    "26.1393157",
+    "91.8373204",
+    "91.9173204"
+   ]
+  }
+ ],
+ "Chatribari": [],
+ "Geetanagar": [
+  {
+   "place_id": 242609831,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 13016790582,
+   "lat": "26.1727330",
+   "lon": "91.7807839",
+   "category": "office",
+   "type": "government",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "office",
+   "name": "GEETANAGAR POLICE STATION",
+   "display_name": "GEETANAGAR POLICE STATION, Karbi Path, Zoo Rd Tiniali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1726830",
+    "26.1727830",
+    "91.7807339",
+    "91.7808339"
+   ]
+  }
+ ],
+ "Ambikagiri Nagar": [
+  {
+   "place_id": 242183067,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160815872,
+   "lat": "26.1691174",
+   "lon": "91.7827667",
+   "category": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467195948729686,
+   "addresstype": "suburb",
+   "name": "Ambikagiri Nagar",
+   "display_name": "Ambikagiri Nagar, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1491174",
+    "26.1891174",
+    "91.7627667",
+    "91.8027667"
+   ]
+  }
+ ],
+ "Jatia": [
+  {
+   "place_id": 241892160,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12976738009,
+   "lat": "26.1443909",
+   "lon": "91.7788842",
+   "category": "amenity",
+   "type": "fuel",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "amenity",
+   "name": "Bharat petroleum jatia",
+   "display_name": "Bharat petroleum jatia, Kahilipara Road, Pub Suruj Nagar, Jatiya, Kahilipara, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1443409",
+    "26.1444409",
+    "91.7788342",
+    "91.7789342"
+   ]
+  }
+ ],
+ "Bishnujyoti Path": [
+  {
+   "place_id": 242607086,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 497524535,
+   "lat": "26.1317874",
+   "lon": "91.7845159",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Bishnujyoti Path",
+   "display_name": "Bishnujyoti Path, Hatigaon Chariali, Hatigaon, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1317428",
+    "26.1318371",
+    "91.7829153",
+    "91.7861164"
+   ]
+  }
+ ],
+ "Rajgarh": [
+  {
+   "place_id": 239967777,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1135617344,
+   "lat": "26.1702498",
+   "lon": "91.7706021",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Gandh Basti, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1668936",
+    "26.1735774",
+    "91.7690934",
+    "91.7721629"
+   ]
+  },
+  {
+   "place_id": 239455375,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262982732,
+   "lat": "26.1767937",
+   "lon": "91.7733873",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Zoo Rd Tiniali, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1735774",
+    "26.1801400",
+    "91.7721629",
+    "91.7741516"
+   ]
+  },
+  {
+   "place_id": 242575553,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262976104,
+   "lat": "26.1729769",
+   "lon": "91.7695402",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Bylane 12",
+   "display_name": "Rajgarh Bylane 12, Gandh Basti, Gandhi Basti, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1725229",
+    "26.1746808",
+    "91.7682868",
+    "91.7715992"
+   ]
+  },
+  {
+   "place_id": 242468637,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262976106,
+   "lat": "26.1720851",
+   "lon": "91.7701251",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Girls High School Road",
+   "display_name": "Rajgarh Girls High School Road, Gandh Basti, Gandhi Basti, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781007, India",
+   "boundingbox": [
+    "26.1717625",
+    "26.1728296",
+    "91.7695340",
+    "91.7712550"
+   ]
+  },
+  {
+   "place_id": 240154693,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 588785833,
+   "lat": "26.1815655",
+   "lon": "91.7744252",
+   "category": "highway",
+   "type": "unclassified",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Chandmari Colony, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1801400",
+    "26.1828920",
+    "91.7741516",
+    "91.7746789"
+   ]
+  },
+  {
+   "place_id": 240951397,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262982736,
+   "lat": "26.1800398",
+   "lon": "91.7730320",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Byelane 3",
+   "display_name": "Rajgarh Byelane 3, Gandh Basti, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1798917",
+    "26.1801686",
+    "91.7719456",
+    "91.7741167"
+   ]
+  },
+  {
+   "place_id": 241896084,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262982733,
+   "lat": "26.1813711",
+   "lon": "91.7732196",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Byelane 1",
+   "display_name": "Rajgarh Byelane 1, Chandmari Colony, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1812492",
+    "26.1815001",
+    "91.7720742",
+    "91.7743663"
+   ]
+  },
+  {
+   "place_id": 242364224,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262982734,
+   "lat": "26.1807235",
+   "lon": "91.7731318",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Byelane 2",
+   "display_name": "Rajgarh Byelane 2, Gandh Basti, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1805821",
+    "26.1808383",
+    "91.7720201",
+    "91.7742403"
+   ]
+  },
+  {
+   "place_id": 242382154,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 262982738,
+   "lat": "26.1783311",
+   "lon": "91.7728512",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Byelane 5",
+   "display_name": "Rajgarh Byelane 5, Gandh Basti, Chandmari, গুৱাহাটী, Guwahati, Kamrup Metropolitan, Assam, 781003, India",
+   "boundingbox": [
+    "26.1781920",
+    "26.1784722",
+    "91.7718761",
+    "91.7738253"
+   ]
+  },
+  {
+   "place_id": 242399975,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1343462017,
+   "lat": "26.1658944",
+   "lon": "91.7686531",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Rajgarh Road",
+   "display_name": "Rajgarh Road, Bhangagarh, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1653929",
+    "26.1664089",
+    "91.7683725",
+    "91.7689034"
+   ]
+  }
+ ],
+ "Sijubari": [
+  {
+   "place_id": 242158159,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 2666919781,
+   "lat": "26.1305008",
+   "lon": "91.7781215",
+   "category": "place",
+   "type": "quarter",
+   "place_rank": 20,
+   "importance": 0.1333862615396353,
+   "addresstype": "quarter",
+   "name": "Sijubari",
+   "display_name": "Sijubari, Hatigaon, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1205008",
+    "26.1405008",
+    "91.7681215",
+    "91.7881215"
+   ]
+  }
+ ],
+ "Beltola Wireless": [
+  {
+   "place_id": 240889896,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 565346112,
+   "lat": "26.1384326",
+   "lon": "91.7904540",
+   "category": "highway",
+   "type": "secondary",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Beltola Road",
+   "display_name": "Beltola Road, Last Gate, Rukimininagar, Wireless, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1376716",
+    "26.1391936",
+    "91.7900328",
+    "91.7908753"
+   ]
+  },
+  {
+   "place_id": 239430762,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 289680376,
+   "lat": "26.1245840",
+   "lon": "91.7893372",
+   "category": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.05338626153963527,
+   "addresstype": "road",
+   "name": "Kailash nagar 1st bylan Beltola",
+   "display_name": "Kailash nagar 1st bylan Beltola, Milan Nagar, Bhetapara, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1230018",
+    "26.1246670",
+    "91.7881733",
+    "91.7921190"
+   ]
+  },
+  {
+   "place_id": 239455691,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12006328567,
+   "lat": "26.1239555",
+   "lon": "91.7983692",
+   "category": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.2928206301930534e-05,
+   "addresstype": "highway",
+   "name": "Beltola Tiniali",
+   "display_name": "Beltola Tiniali, Pir Azan Fakir Road, Last Gate, Survey, Wireless, Dispur, Kamrup Metropolitan, Assam, 781005, India",
+   "boundingbox": [
+    "26.1239055",
+    "26.1240055",
+    "91.7983192",
+    "91.7984192"
+   ]
+  }
+ ],
+ "Dakhingaon": [
+  {
+   "place_id": 242364901,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6160665849,
+   "lat": "26.1311762",
+   "lon": "91.7608222",
+   "category": "place",
+   "type": "quarter",
+   "place_rank": 20,
+   "importance": 0.1333862615396353,
+   "addresstype": "quarter",
+   "name": "Dakhingaon",
+   "display_name": "Dakhingaon, Kheraikuchi, Dispur, Kamrup Metropolitan, Assam, 781019, India",
+   "boundingbox": [
+    "26.1211762",
+    "26.1411762",
+    "91.7508222",
+    "91.7708222"
+   ]
+  }
+ ]
+}

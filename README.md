@@ -173,6 +173,7 @@ screenshot yet of the simulated IoT telemetry panel or the sidebar disclosure.
   a Moderate cell, so recall cannot vouch for Moderate cells being in the queue.
 - **Partial DEM coverage.** 93 of the 904 cells lack DEM coverage; they get no priority
   and are rendered as grey "No Data", not as genuine low priority.
+- **Flood layer not adopted.** A HAND-based flood susceptibility layer was built and tested against 7 verified Guwahati urban-flood events (docs/flood_evidence.md). It doubled the median review queue (28 to 66 cells) for a pooled lift of 1.2 over chance and was not adopted.
 - **Single-district scope.** The system is built and validated for Kamrup Metropolitan
   only.
 

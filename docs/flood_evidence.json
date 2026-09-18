@@ -1,0 +1,1497 @@
+{
+ "events": {
+  "2024-08-05": {
+   "rainfall_mm": 78.4,
+   "grade": "B",
+   "localities_in_ledger": 21,
+   "localities_geocoded": 12,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.96,
+   "all_resolved": {
+    "n_cells": 11,
+    "n_no_data": 0,
+    "flood_high": 10,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 2,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 7,
+      "2 Watch": 2,
+      "3 Elevated": 2,
+      "4 Critical": 0
+     },
+     "district_review_cells": 61,
+     "district_review_share": 0.0752157829839704,
+     "chance_at_least": 0.19772627953941121,
+     "expected_by_chance": 0.8273736128236745,
+     "rose_with_flood_layer": 6,
+     "crossed_into_review": 1
+    },
+    "with": {
+     "review": 3,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 1,
+      "2 Watch": 7,
+      "3 Elevated": 3,
+      "4 Critical": 0
+     },
+     "district_review_cells": 152,
+     "district_review_share": 0.187422934648582,
+     "chance_at_least": 0.34062764731594675,
+     "expected_by_chance": 2.061652281134402,
+     "rose_with_flood_layer": 6,
+     "crossed_into_review": 1
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 9,
+    "n_no_data": 0,
+    "flood_high": 8,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 2,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 2,
+      "3 Elevated": 2,
+      "4 Critical": 0
+     },
+     "district_review_cells": 61,
+     "district_review_share": 0.0752157829839704,
+     "chance_at_least": 0.14235696273496362,
+     "expected_by_chance": 0.6769420468557337,
+     "rose_with_flood_layer": 4,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 2,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 1,
+      "2 Watch": 6,
+      "3 Elevated": 2,
+      "4 Critical": 0
+     },
+     "district_review_cells": 152,
+     "district_review_share": 0.187422934648582,
+     "chance_at_least": 0.5259164840487675,
+     "expected_by_chance": 1.686806411837238,
+     "rose_with_flood_layer": 4,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R011_C024",
+     "localities": "Jorabat",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.71,
+     "tier": "T3",
+     "p_without": 3,
+     "p_with": 3,
+     "rank_without": [
+      29,
+      61
+     ],
+     "rank_with": [
+      48,
+      152
+     ]
+    },
+    {
+     "grid_id": "KM_R013_C016",
+     "localities": "Beltola",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "Low",
+     "low_coverage": false,
+     "trigger": 0.3651428571428571,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      420,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C010",
+     "localities": "Jyotikuchi",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.3651428571428571,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Hatigaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.3651428571428571,
+     "tier": "T2",
+     "p_without": 2,
+     "p_with": 2,
+     "rank_without": [
+      62,
+      203
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.3651428571428571,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R016_C015",
+     "localities": "Zoo Road; Ganeshguri",
+     "types": "neighbourhood; road_corridor",
+     "quality": "place_centroid; road_segment_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.3651428571428571,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R017_C006",
+     "localities": "Maligaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.72,
+     "tier": "T3",
+     "p_without": 3,
+     "p_with": 3,
+     "rank_without": [
+      29,
+      61
+     ],
+     "rank_with": [
+      48,
+      152
+     ]
+    },
+    {
+     "grid_id": "KM_R017_C018",
+     "localities": "VIP Road",
+     "types": "road_corridor",
+     "quality": "road_segment_point",
+     "road_only": true,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.71,
+     "tier": "T3",
+     "p_without": 1,
+     "p_with": 3,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      48,
+      152
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.48,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R019_C014",
+     "localities": "Rajgarh Road",
+     "types": "road_corridor",
+     "quality": "road_segment_point",
+     "road_only": true,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.48,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      204,
+      811
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    },
+    {
+     "grid_id": "KM_R020_C014",
+     "localities": "Chandmari/Maniram Dewan Road",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.48,
+     "tier": "T2",
+     "p_without": 2,
+     "p_with": 2,
+     "rank_without": [
+      62,
+      203
+     ],
+     "rank_with": [
+      153,
+      419
+     ]
+    }
+   ]
+  },
+  "2025-05-10": {
+   "rainfall_mm": null,
+   "grade": "B-",
+   "localities_in_ledger": 7,
+   "localities_geocoded": 5,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.04,
+   "all_resolved": {
+    "n_cells": 5,
+    "n_no_data": 0,
+    "flood_high": 5,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 5,
+    "n_no_data": 0,
+    "flood_high": 5,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R016_C015",
+     "localities": "Ganeshguri",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.01,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C015",
+     "localities": "Ambikagiri Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.01,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R020_C014",
+     "localities": "Chandmari",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.01,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    }
+   ]
+  },
+  "2025-05-20": {
+   "rainfall_mm": null,
+   "grade": "C+",
+   "localities_in_ledger": 9,
+   "localities_geocoded": 7,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.769527681620705,
+   "all_resolved": {
+    "n_cells": 6,
+    "n_no_data": 0,
+    "flood_high": 5,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 1,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 1,
+      "4 Critical": 0
+     },
+     "district_review_cells": 53,
+     "district_review_share": 0.06535141800246609,
+     "chance_at_least": 0.3342275462264451,
+     "expected_by_chance": 0.3921085080147966,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 2
+    },
+    "with": {
+     "review": 3,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 3,
+      "4 Critical": 0
+     },
+     "district_review_cells": 186,
+     "district_review_share": 0.22934648581997533,
+     "chance_at_least": 0.13739266711416181,
+     "expected_by_chance": 1.376078914919852,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 2
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 6,
+    "n_no_data": 0,
+    "flood_high": 5,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 1,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 1,
+      "4 Critical": 0
+     },
+     "district_review_cells": 53,
+     "district_review_share": 0.06535141800246609,
+     "chance_at_least": 0.3342275462264451,
+     "expected_by_chance": 0.3921085080147966,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 2
+    },
+    "with": {
+     "review": 3,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 3,
+      "4 Critical": 0
+     },
+     "district_review_cells": 186,
+     "district_review_share": 0.22934648581997533,
+     "chance_at_least": 0.13739266711416181,
+     "expected_by_chance": 1.376078914919852,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 2
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R013_C016",
+     "localities": "Beltola",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "Low",
+     "low_coverage": false,
+     "trigger": 0.5895439153869386,
+     "tier": "T3",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      185,
+      811
+     ],
+     "rank_with": [
+      467,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Hatigaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.5895439153869386,
+     "tier": "T3",
+     "p_without": 3,
+     "p_with": 3,
+     "rank_without": [
+      3,
+      53
+     ],
+     "rank_with": [
+      3,
+      186
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.5895439153869386,
+     "tier": "T3",
+     "p_without": 1,
+     "p_with": 3,
+     "rank_without": [
+      185,
+      811
+     ],
+     "rank_with": [
+      3,
+      186
+     ]
+    },
+    {
+     "grid_id": "KM_R016_C015",
+     "localities": "Zoo Road; Ganeshguri",
+     "types": "neighbourhood; road_corridor",
+     "quality": "place_centroid; road_segment_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.5895439153869386,
+     "tier": "T3",
+     "p_without": 1,
+     "p_with": 3,
+     "rank_without": [
+      185,
+      811
+     ],
+     "rank_with": [
+      3,
+      186
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.08,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      185,
+      811
+     ],
+     "rank_with": [
+      467,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R020_C014",
+     "localities": "Chandmari",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.08,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      185,
+      811
+     ],
+     "rank_with": [
+      467,
+      811
+     ]
+    }
+   ]
+  },
+  "2025-05-29": {
+   "rainfall_mm": null,
+   "grade": "B",
+   "localities_in_ledger": 7,
+   "localities_geocoded": 5,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.39,
+   "all_resolved": {
+    "n_cells": 5,
+    "n_no_data": 0,
+    "flood_high": 4,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 5,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 1,
+     "district_review_share": 0.0012330456226880395,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.006165228113440197,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 4,
+      "2 Watch": 1,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 1,
+     "district_review_share": 0.0012330456226880395,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.006165228113440197,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 4,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 4,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 1,
+     "district_review_share": 0.0012330456226880395,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.004932182490752158,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 1,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 1,
+     "district_review_share": 0.0012330456226880395,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.004932182490752158,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R013_C016",
+     "localities": "Beltola",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "Low",
+     "low_coverage": false,
+     "trigger": 0.07,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      30,
+      811
+     ],
+     "rank_with": [
+      122,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Hatigaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.07,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      30,
+      811
+     ],
+     "rank_with": [
+      122,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C015",
+     "localities": "Bishnujyoti Path",
+     "types": "road_corridor",
+     "quality": "road_segment_point",
+     "road_only": true,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.07,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      30,
+      811
+     ],
+     "rank_with": [
+      122,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.07,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      30,
+      811
+     ],
+     "rank_with": [
+      122,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.28,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      30,
+      811
+     ],
+     "rank_with": [
+      2,
+      121
+     ]
+    }
+   ]
+  },
+  "2025-05-30": {
+   "rainfall_mm": null,
+   "grade": "C+",
+   "localities_in_ledger": 6,
+   "localities_geocoded": 4,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 1.0,
+   "all_resolved": {
+    "n_cells": 4,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 1,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 1,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 1
+     },
+     "district_review_cells": 362,
+     "district_review_share": 0.44636251541307026,
+     "chance_at_least": 0.9066098696937854,
+     "expected_by_chance": 1.785450061652281,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 1
+    },
+    "with": {
+     "review": 2,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 0,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 2
+     },
+     "district_review_cells": 686,
+     "district_review_share": 0.8458692971639951,
+     "chance_at_least": 0.987275309139279,
+     "expected_by_chance": 3.3834771886559802,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 1
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 4,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 1,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 1,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 1
+     },
+     "district_review_cells": 362,
+     "district_review_share": 0.44636251541307026,
+     "chance_at_least": 0.9066098696937854,
+     "expected_by_chance": 1.785450061652281,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 1
+    },
+    "with": {
+     "review": 2,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 0,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 2
+     },
+     "district_review_cells": 686,
+     "district_review_share": 0.8458692971639951,
+     "chance_at_least": 0.987275309139279,
+     "expected_by_chance": 3.3834771886559802,
+     "rose_with_flood_layer": 2,
+     "crossed_into_review": 1
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R013_C016",
+     "localities": "Beltola",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "Low",
+     "low_coverage": false,
+     "trigger": 1.0,
+     "tier": "T4",
+     "p_without": 2,
+     "p_with": 2,
+     "rank_without": [
+      363,
+      626
+     ],
+     "rank_with": [
+      687,
+      768
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Sijubari",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 1.0,
+     "tier": "T4",
+     "p_without": 4,
+     "p_with": 4,
+     "rank_without": [
+      1,
+      133
+     ],
+     "rank_with": [
+      1,
+      404
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 1.0,
+     "tier": "T4",
+     "p_without": 2,
+     "p_with": 4,
+     "rank_without": [
+      363,
+      626
+     ],
+     "rank_with": [
+      1,
+      404
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.34,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      627,
+      811
+     ],
+     "rank_with": [
+      687,
+      768
+     ]
+    }
+   ]
+  },
+  "2025-06-14": {
+   "rainfall_mm": 11.3,
+   "grade": "B-",
+   "localities_in_ledger": 4,
+   "localities_geocoded": 3,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.0,
+   "all_resolved": {
+    "n_cells": 3,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 3,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 0,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 0,
+     "district_review_share": 0.0,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.0,
+     "rose_with_flood_layer": 0,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R014_C013",
+     "localities": "Dakhingaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Hatigaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      1,
+      811
+     ],
+     "rank_with": [
+      1,
+      811
+     ]
+    }
+   ]
+  },
+  "2025-07-22": {
+   "rainfall_mm": 7.2,
+   "grade": "B",
+   "localities_in_ledger": 4,
+   "localities_geocoded": 4,
+   "geocoded_outside_grid": 0,
+   "district_trigger_max": 0.47,
+   "all_resolved": {
+    "n_cells": 4,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 1,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 3,
+     "district_review_share": 0.0036991368680641184,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.014796547472256474,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 2,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 3,
+     "district_review_share": 0.0036991368680641184,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.014796547472256474,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "neighbourhood_points_only": {
+    "n_cells": 4,
+    "n_no_data": 0,
+    "flood_high": 3,
+    "flood_high_low_coverage": 0,
+    "without": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 3,
+      "2 Watch": 1,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 3,
+     "district_review_share": 0.0036991368680641184,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.014796547472256474,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "with": {
+     "review": 0,
+     "levels": {
+      "No data": 0,
+      "1 Routine": 2,
+      "2 Watch": 2,
+      "3 Elevated": 0,
+      "4 Critical": 0
+     },
+     "district_review_cells": 3,
+     "district_review_share": 0.0036991368680641184,
+     "chance_at_least": 1.0,
+     "expected_by_chance": 0.014796547472256474,
+     "rose_with_flood_layer": 1,
+     "crossed_into_review": 0
+    },
+    "scored_cells_district": 811,
+    "flood_high_share_district": 0.6305309734513275
+   },
+   "cells": [
+    {
+     "grid_id": "KM_R013_C016",
+     "localities": "Beltola",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "Low",
+     "low_coverage": false,
+     "trigger": 0.33,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      36,
+      811
+     ],
+     "rank_with": [
+      106,
+      811
+     ]
+    },
+    {
+     "grid_id": "KM_R014_C014",
+     "localities": "Hatigaon",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "High",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.33,
+     "tier": "T2",
+     "p_without": 2,
+     "p_with": 2,
+     "rank_without": [
+      4,
+      35
+     ],
+     "rank_with": [
+      4,
+      105
+     ]
+    },
+    {
+     "grid_id": "KM_R015_C017",
+     "localities": "Rukminigaon",
+     "types": "neighbourhood",
+     "quality": "named_feature_point",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.33,
+     "tier": "T2",
+     "p_without": 1,
+     "p_with": 2,
+     "rank_without": [
+      36,
+      811
+     ],
+     "rank_with": [
+      4,
+      105
+     ]
+    },
+    {
+     "grid_id": "KM_R018_C014",
+     "localities": "Anil Nagar",
+     "types": "neighbourhood",
+     "quality": "place_centroid",
+     "road_only": false,
+     "landslide_class": "Low",
+     "flood_class": "High",
+     "low_coverage": false,
+     "trigger": 0.0,
+     "tier": "T1",
+     "p_without": 1,
+     "p_with": 1,
+     "rank_without": [
+      36,
+      811
+     ],
+     "rank_with": [
+      106,
+      811
+     ]
+    }
+   ]
+  }
+ },
+ "review_min_priority": 3,
+ "replay_queue": {
+  "days": 2922,
+  "without": {
+   "alert_days": 519,
+   "cells_ever_flagged": 460,
+   "median": 28.0,
+   "q1": 7.0,
+   "q3": 84.0,
+   "max": 460,
+   "cell_days": 31672
+  },
+  "with": {
+   "alert_days": 523,
+   "cells_ever_flagged": 755,
+   "median": 66.0,
+   "q1": 11.0,
+   "q3": 183.0,
+   "max": 755,
+   "cell_days": 70127
+  }
+ },
+ "flood_class_counts": {
+  "High": 570,
+  "Low": 232,
+  "NaN": 102
+ }
+}
