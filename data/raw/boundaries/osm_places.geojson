@@ -1,0 +1,358 @@
+{
+  "type": "FeatureCollection",
+  "name": "osm_places",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jalukbari",
+        "place": "suburb",
+        "osm_id": "node/6161163702",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.67122,
+          26.1555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pandu",
+        "place": "suburb",
+        "osm_id": "node/12082230957",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.68061,
+          26.16346
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Railway Colony",
+        "place": "suburb",
+        "osm_id": "node/6163738316",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.78249,
+          26.18088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bharalumukh",
+        "place": "suburb",
+        "osm_id": "node/6161189988",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.72921,
+          26.17164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamakhya Dham",
+        "place": "suburb",
+        "osm_id": "node/1698296637",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.70638,
+          26.16645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shantipur",
+        "place": "suburb",
+        "osm_id": "node/6163741920",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.72752,
+          26.166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bamunimaidam",
+        "place": "suburb",
+        "osm_id": "node/6168594201",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.78866,
+          26.18522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Six Mile",
+        "place": "suburb",
+        "osm_id": "node/6160803210",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.80719,
+          26.13099
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beltola",
+        "place": "suburb",
+        "osm_id": "node/6160810152",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.79947,
+          26.12418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hengrabari",
+        "place": "suburb",
+        "osm_id": "node/6160885078",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.80373,
+          26.1508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Noonmati",
+        "place": "suburb",
+        "osm_id": "node/6161187086",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.79986,
+          26.19794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Guwahati Club",
+        "place": "suburb",
+        "osm_id": "node/6160888960",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.75682,
+          26.18491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pub Suruj Nagar",
+        "place": "neighbourhood",
+        "osm_id": "node/12847009719",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.75552,
+          26.13692
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ananda Nagar",
+        "place": "suburb",
+        "osm_id": "node/6168664036",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.77061,
+          26.15766
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chandmari",
+        "place": "suburb",
+        "osm_id": "node/6160817648",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.77409,
+          26.18412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Japorigog",
+        "place": "suburb",
+        "osm_id": "node/6160810227",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.78877,
+          26.15776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Azara",
+        "place": "suburb",
+        "osm_id": "node/7159263816",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.61643,
+          26.12111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fancy Bazaar",
+        "place": "suburb",
+        "osm_id": "node/1698296623",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.73622,
+          26.17993
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pan Bazar",
+        "place": "suburb",
+        "osm_id": "node/6161187904",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.74725,
+          26.18532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Guwahati",
+        "place": "suburb",
+        "osm_id": "node/5623038879",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.71844,
+          26.19151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Machkhowa",
+        "place": "suburb",
+        "osm_id": "node/6161189285",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.73402,
+          26.17551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Noonmati Refinery",
+        "place": "suburb",
+        "osm_id": "node/6160818822",
+        "osm_source": "OpenStreetMap-derived public page"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          91.81303,
+          26.18364
+        ]
+      }
+    }
+  ]
+}
