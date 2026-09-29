@@ -1,7 +1,7 @@
 """
 app/streamlit_app.py
 ────────────────────
-Flash Flood Early Warning System — Interactive Demo
+Flash Flood Decision-Support Nowcast — Historical Replay
 SIH 2026 | Kamrup Metropolitan District, Assam
 
 Run with:
@@ -15,8 +15,8 @@ REAL       Priority levels, for any date from 2018-01-01 to 2025-12-31.
            The 4x4 matrix and the tier boundaries live in app/config.py.
            Trigger probabilities come from the RandomForest model via the
            precomputed cache (build_trigger_cache.py, 55,518 rows); the
-           susceptibility layer is terrain-derived and floored by ASDMA's
-           officially identified vulnerable locations
+           susceptibility layer is terrain-derived and floored by listed
+           hazard sites compiled from news reports
            (build_susceptibility.py). The cache builder asserts this
            matches app/predict.py to 1e-6 on all 904 cells.
 SIMULATED  IoT sensor telemetry (app/mqtt_sim.py). No public
@@ -341,7 +341,7 @@ def build_folium_map(gdf: gpd.GeoDataFrame, review_min: int) -> folium.Map:
             aliases=["Locality", "Grid ID", "Priority", "Susceptibility", "Trigger tier", "In review queue", "Lat", "Lon"],
             max_width=240,
         ),
-        name="Risk Grid",
+        name="Priority Grid",
     ).add_to(m)
 
     # Legend overlay
@@ -493,14 +493,14 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### 📡 IoT Telemetry")
+    st.markdown("### 📡 Simulated Sensor Feed (demo)")
     iot_active = st.toggle(
-        "Ingest Live IoT Telemetry", value=False,
-        help="Show live sensor readings from 5 simulated field stations.",
+        "Show simulated sensor feed (demo)", value=False,
+        help="Show simulated sensor readings from 5 virtual field stations.",
     )
     st.markdown(
         '<p class="sidebar-caption">⚠ Sensor data is simulated for this demonstration. '
-        "A live MQTT ingestion pipeline will connect to real sensors when deployed.</p>",
+        "Real MQTT sensor ingestion is a next-phase integration.</p>",
         unsafe_allow_html=True,
     )
 
@@ -515,7 +515,7 @@ with st.sidebar:
         "landslide/flood incidents (2022–2025).<br><br>"
         "<b>Susceptibility is terrain-derived, floored by listed hazard "
         "sites.</b> That means a cell can show high "
-        "risk because it appears on the listed hazard sites, "
+        "priority because it appears on the listed hazard sites, "
         "not only because the terrain model inferred it. We do this "
         "because 1 km mean slope alone ranks these cells wrongly: every "
         "documented landslide site in the district sits in a cell that is "
@@ -709,7 +709,7 @@ st.caption(
     "Susceptibility is terrain-derived (SRTM slope) and "
     "**floored at cells containing a listed hazard site or a dated "
     "incident**. The hazard list is 47 locations compiled from news "
-    "reports and official sources; per-row source in "
+    "reports; per-row source in "
     "`data/raw/asdma_vulnerable_locations.csv`. 34 of 904 cells are raised "
     "to at least *High* on that basis. The matrix entries are team-assigned "
     "judgements, not values from a published study; the review level was "
@@ -803,16 +803,16 @@ else:
 if iot_active:
     st.markdown("---")
     st.markdown(
-        "## 📡 Live Sensor Telemetry\n"
+        "## 📡 Simulated Sensor Feed (demo)\n"
         '<span style="color:#4db6ac;font-size:12px;letter-spacing:0.08em;">'
-        "⚠ SIMULATED SENSOR TELEMETRY — DEMONSTRATION OF LIVE INGESTION CAPABILITY"
+        "⚠ SIMULATED SENSOR TELEMETRY — DEMONSTRATION ONLY"
         "</span>",
         unsafe_allow_html=True,
     )
     st.caption(
         "5 virtual IoT sensors placed in hilly northern grid cells. "
         "Readings drift realistically every 3 seconds. "
-        "In production this panel consumes a live MQTT feed via paho-mqtt."
+        "Real MQTT sensor ingestion is planned for the next phase."
     )
 
     sensor_placeholder = st.empty()

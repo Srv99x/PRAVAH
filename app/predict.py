@@ -4,10 +4,8 @@ import pandas as pd
 
 from app.config import SUSCEPTIBILITY_MULTIPLIERS, priority_levels, trigger_tier
 
-# RandomForest is the shipped model: it won on PR-AUC (0.8257 vs XGBoost's
-# 0.7504) on the episode-grouped split. See docs/model_training_log.md for the
-# split method, seed, and full metrics; rerun app/train_trigger_model.py to
-# reproduce.
+# RF and XGBoost tie under 5-fold storm-grouped CV (0.80 vs 0.79);
+# RF ships for stability. See docs/evaluation_cv.json for the fold results.
 MODEL_PATH = Path("models/random_forest_trigger_model.pkl")
 _model = None
 _susceptibility_df = None

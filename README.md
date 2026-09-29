@@ -1,28 +1,65 @@
 # PRAVAH
 
-**Flash Flood Prediction System for Hilly Regions using Multi-Source Data**
-Team Luit · Smart India Hackathon 2026 · Problem Statement PS26192 (Ministry of Home Affairs — Disaster Management)
+**Decision-support nowcast for the Kamrup Metropolitan pilot**  
+Team Luit · Smart India Hackathon 2026 · Problem Statement SIH26192
 
-*Hyper-local, proactive flash-flood and landslide early warning at 1 km resolution for hilly Guwahati.*
+PRAVAH displays a **historical replay of 2018–2025 ERA5-Land** as a cell-level,
+ordinal priority index and review queue. It combines a five-feature RandomForest
+storm trigger with terrain-derived susceptibility in a 4×4 decision matrix. This
+prototype complements IMD FFGS, NESAC-ASDMA FLEWS and CWC C-FLOOD; it does not
+replace them or establish an operational evacuation lead time.
 
-## Problem statement
+**[Open the Streamlit app](https://pravah-luit.streamlit.app/)**
 
-Flash floods and rainfall-triggered slope failures in hilly terrain develop in hours, but
-official warnings for districts like Kamrup Metropolitan are issued at district level and
-often arrive too late to act on. There is no hyper-local, forward-looking picture of which
-settlements are at risk on a given day. PRAVAH addresses that gap: it turns multi-source
-rainfall, soil-moisture and terrain data into a per-cell risk forecast that can be issued
-ahead of the event.
+## What is built
 
-## What PRAVAH does
+- Historical replay map and ranked review queue for **904 one-km cells**: **811 scored**
+  and **93 without DEM coverage**, shown as No Data, never low priority
+  ([priority-matrix analysis](docs/priority_matrix.md)).
+- RandomForest storm trigger on five rainfall, soil-moisture and temperature features;
+  **5-fold storm-grouped CV PR-AUC 0.80** (no-skill 0.09), and **2025 year-ahead
+  PR-AUC 0.55–0.59** (no-skill 0.055). These are proxy-label results, not incident
+  detection results: **94% of positives** are rainfall-threshold proxies. See the
+  [evaluation output](docs/evaluation_cv.json) and
+  [training log](docs/model_training_log.md).
+- **4×4** ordinal decision matrix with review at **level 3**. Nested-cut held-out
+  episode recall is **42/63**; the shipped cut reaches **44/63**, versus **39/63**
+  under the superseded rule. Replay workload: median **28 cells per alert day**
+  (IQR **7–84**), **519 alert days of 2,922**; **460 cells** can reach review,
+  versus **186** under the superseded rule
+  ([priority-matrix output](docs/priority_matrix.md)).
+- Hazard sites compiled from news reports with a source recorded per row in
+  `data/raw/asdma_vulnerable_locations.csv`; this is **not an official ASDMA list**.
+- **SIMULATED** sensor feed for demonstration.
 
-PRAVAH predicts rainfall-triggered flash-flood and slope-failure risk at **1 km grid
-resolution** for the **Kamrup Metropolitan district** of Assam (Guwahati), and surfaces it
-as an interactive risk map with a ranked early-warning list. The pilot grid covers **904
-boundary-clipped cells (~796 km²)**, and risk can be rendered for any date from
-**2018-01-01 to 2025-12-31**. It
-replaces the current district-level, after-the-fact warning paradigm with cell-level,
-proactive alerts.
+## Next phase
+
+- Validate evacuation lead time and incident outcomes independently.
+- Build FastAPI and CAP 1.2 delivery, SACHET integration, real IoT ingestion and radar inputs.
+
+## Scope / what we do not claim
+
+Historical ERA5-Land replay is **not a forecast**. The trigger includes the current
+hour, so its score is a same-storm nowcast, not a probability of flooding or a
+validated early warning. The priority index is ordinal. Missing or stale inputs
+must not be read as low priority. PRAVAH has **no validated evacuation lead time**;
+incident results are reported separately from rainfall-threshold proxy results.
+
+The existing [ECMWF retrospective backtest](docs/forecast_backtest.md) and
+[exploratory diagnostics](docs/forecast_diagnostics.md) are preserved with the
+[backtest](scripts/forecast_backtest.py) and
+[diagnostic](scripts/forecast_diagnostics.py) scripts and the
+[frozen configuration](docs/forecast_config.json). They do not establish a
+validated evacuation lead time.
+
+## Run locally
+
+From the repository root, install `requirements.txt` in the project virtual environment,
+fetch the district boundary as described below, then run:
+
+```powershell
+venv\Scripts\streamlit.exe run app/streamlit_app.py
+```
 
 ## Architecture
 
@@ -38,7 +75,7 @@ T4 >= 0.80) and the review level live in `app/config.py`; the evidence for them 
 `docs/priority_matrix.md`.
 
 - **Static susceptibility** is terrain-derived from 1 km mean slope, then *floored* to at
-  least "High" for any cell containing a listed hazard site (news and official sources,
+  least "High" for any cell containing a listed hazard site (compiled from news reports,
   per-row source in `data/raw/asdma_vulnerable_locations.csv`) **or** a dated-incident cell.
   The class (Low / Moderate / High / Very High) is one axis of the decision matrix.
 - **Dynamic trigger** is a scikit-learn RandomForest (`n_estimators=100`,
@@ -53,7 +90,7 @@ T4 >= 0.80) and the review level live in `app/config.py`; the evidence for them 
 
 Metrics reported are **PR-AUC** and **F1-macro**, from 5-fold `StratifiedGroupKFold`
 cross-validation over storm-episode groups (61 storm episodes, 127 groups) — reproducible by
-running `python app/evaluate_trigger_cv.py`. ROC-AUC is deliberately not reported — it is
+running `venv\Scripts\python.exe app/evaluate_trigger_cv.py`. ROC-AUC is deliberately not reported — it is
 misleading at the ~9% positive-class rate of this dataset. Fold-by-fold numbers, package
 versions, and the commit this was run against are in
 [`docs/evaluation_cv.json`](docs/evaluation_cv.json); label and split narrative is in
@@ -84,7 +121,7 @@ Labels: 2,627 positive cell-hours (2,459 rainfall-threshold + 7 dated incidents 
 28,897-row training set. 7 of 8 dated incidents are inside the weather record and used; the
 16 Jul 2026 Lal Ganesh incident is excluded because it post-dates the record.
 
-**Hazard-site overlap finding.** The listed hazard sites (news and official sources,
+**Hazard-site overlap finding.** The listed hazard sites (compiled from news reports,
 per-row source in `data/raw/asdma_vulnerable_locations.csv`) are mostly reported from
 2022-23, before five of the six fatal incidents in our validation set. All 6
 incident-containing grid cells fall within the listed hazard sites' cells — the
@@ -94,7 +131,7 @@ contains a listed hazard site **or** a dated-incident cell, whichever applies.
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
 ## Getting the district boundary
@@ -107,7 +144,7 @@ redistributed](https://gadm.org/license.html), which is why the file isn't
 checked in. Every teammate fetches their own copy:
 
 ```bash
-python scripts/fetch_boundary.py
+venv\Scripts\python.exe scripts/fetch_boundary.py
 ```
 
 This downloads GADM's India admin-level-2 dataset, filters it to Kamrup
@@ -121,8 +158,8 @@ command if the boundary file is missing.
 Run from the repository root, in order:
 
 ```bash
-python build_susceptibility.py     # -> data/processed/susceptibility_features.parquet
-python build_trigger_cache.py      # -> data/processed/trigger_prob_daily.parquet
+venv\Scripts\python.exe build_susceptibility.py     # -> data/processed/susceptibility_features.parquet
+venv\Scripts\python.exe build_trigger_cache.py      # -> data/processed/trigger_prob_daily.parquet
 ```
 
 ## Running the app
@@ -130,12 +167,12 @@ python build_trigger_cache.py      # -> data/processed/trigger_prob_daily.parque
 Run from the repository root:
 
 ```bash
-streamlit run app/streamlit_app.py
+venv\Scripts\streamlit.exe run app/streamlit_app.py
 ```
 
 The sidebar provides a replay-date selector (historical dates, not a forecast), one-click
 jumps to documented events, a minimum-priority selector for the review queue, and an
-"Ingest Live IoT Telemetry" toggle. The main pane shows the full-width 1 km priority map and,
+"Show simulated sensor feed (demo)" toggle. The main pane shows the full-width 1 km priority map and,
 below it, the per-cell explanation panel and the ranked review queue.
 
 ## Visual walkthrough
@@ -155,7 +192,7 @@ priority the matrix gives them, and each feature's value against its historical 
 *Ranked review queue: cells at the review level or above, ordered by priority level, then
 trigger, then susceptibility.*
 
-Earlier screenshots showing the old multiplier formula were moved to
+Earlier screenshots showing the superseded priority rule were moved to
 `docs/slides-assets/superseded_old_formula/` and must not be reused. There is no current
 screenshot yet of the simulated IoT telemetry panel or the sidebar disclosure.
 
@@ -181,11 +218,11 @@ screenshot yet of the simulated IoT telemetry panel or the sidebar disclosure.
 Python · pandas · numpy · geopandas · rasterio · scikit-learn · XGBoost · SHAP · Streamlit ·
 Folium · matplotlib · paho-mqtt (simulated feed)
 
-## Team
+## TEAM
 
-Team Luit — Smart India Hackathon 2026.
+Team Luit — Assam down town University, Guwahati — SIH 2026, PS SIH26192 (Team ID 186513)
 
-- Sourav Chakraborty (Team lead)
+- Sourav Chakraborty (Team Leader)
 - Akash Kalita
 - Khomdram Sanahal
 - Debjani Singha
