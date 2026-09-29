@@ -220,5 +220,12 @@ Folium · matplotlib · paho-mqtt (simulated feed)
 
 ## TEAM
 
-TODO (team lead): add the submitted team roster here.
+Team Luit — Assam down town University, Guwahati — SIH 2026, PS SIH26192 (Team ID 186513)
+
+- Sourav Chakraborty (Team Leader)
+- Akash Kalita
+- Khomdram Sanahal
+- Debjani Singha
+- Shruti Laitonjam
+- Samin Fiza Mutlib
 
