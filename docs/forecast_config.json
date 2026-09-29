@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "status": "threshold_frozen_before_test",
+  "frozen_at": "2026-09-18T00:00:00+05:30",
+  "study_name": "PRAVAH latency-assumed retrospective forecast evaluation",
+  "model": "ecmwf_ifs",
+  "archive": {
+    "single_runs_endpoint": "https://single-runs-api.open-meteo.com/v1/forecast",
+    "historical_forecast_endpoint": "https://historical-forecast-api.open-meteo.com/v1/forecast",
+    "provenance": "partly_hindcast",
+    "archive_start": "2024-03-14",
+    "archive_end": "2025-12-31",
+    "warning": "Open-Meteo describes the pre-operational ECMWF IFS Cycle 49R1 portion as hindcasts. This evaluation does not establish historical API availability."
+  },
+  "periods": {
+    "training": [
+      "2018-01-01",
+      "2023-12-31"
+    ],
+    "calibration": [
+      "2024-03-14",
+      "2024-12-31"
+    ],
+    "test": [
+      "2025-01-01",
+      "2025-12-31"
+    ],
+    "monsoon_months": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "test_reuse_disclosure": "The 2025 period was previously evaluated using ERA5-domain inputs and is therefore a reused test period, not a pristine confirmatory test."
+  },
+  "issue_policy": {
+    "run_cycles_utc": [
+      0,
+      12
+    ],
+    "primary_latency_hours": 7,
+    "sensitivity_latency_hours": [
+      5,
+      9
+    ],
+    "lead_hours": [
+      6,
+      12,
+      24
+    ],
+    "definition": "issue_time = run_initialisation_time + latency; valid_time = issue_time + lead",
+    "alert_validity": "Each scheduled alert is valid from its target time until the next target time (12 hours, half-open). An episode is assigned to the latest target at or before onset.",
+    "nominal_lead_interpretation": "The configured lead is the minimum issue-to-onset warning lead; actual episode lead is reported."
+  },
+  "features": {
+    "ordered": [
+      "soil_moisture_0_7",
+      "soil_moisture_7_28",
+      "temp_c",
+      "api_3d",
+      "api_7d"
+    ],
+    "instantaneous_source": "selected ecmwf_ifs single run at valid_time",
+    "antecedent_source": "ecmwf_ifs Historical Forecast at hours <= issue_time plus selected single-run precipitation at hours > issue_time and <= valid_time",
+    "api_windows_hours": {
+      "api_3d": 72,
+      "api_7d": 168
+    },
+    "rolling_includes_valid_hour": true,
+    "require_complete_windows": true,
+    "zero_fill": false,
+    "era5_allowed_in_forecast_features": false
+  },
+  "reference": {
+    "source": "existing ERA5-domain weather_hourly.parquet",
+    "precipitation_1h_mm": 20.0,
+    "precipitation_3h_mm": 60.0,
+    "slope_degrees": 15.0,
+    "slope_column": "slope_mean",
+    "episode_merge_gap_hours": 6,
+    "forecast_to_reference_alignment": "A forecast valid time on an IST half-hour is verified against the preceding whole IST reference hour.",
+    "reference_key_offset_minutes": 30,
+    "episode_verification": "first positive hour and slope-eligible cells positive at onset"
+  },
+  "training": {
+    "algorithm": "RandomForestClassifier",
+    "label_pipeline": "existing app/train_trigger_model.py pipeline: rainfall-threshold positives, verified ASDMA vulnerable-cell rainfall triggers, and dated incident positives",
+    "n_estimators": 100,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "negative_to_positive_ratio": 10,
+    "minimum_negative_separation_m": 1000.0,
+    "forbidden_model_path": "models/random_forest_trigger_model.pkl"
+  },
+  "calibration": {
+    "one_threshold_across_leads": true,
+    "objective": "maximise pooled episode recall across configured leads",
+    "constraint": "no more than 4 false-alert days in every fully evaluated monsoon month for every lead",
+    "tie_break": "highest threshold, then fewest total false-alert days",
+    "failure_policy": "record calibration failure and do not evaluate the test period"
+  },
+  "metrics": {
+    "missing_event_forecasts_are_misses": true,
+    "coverage_conditional_recall": true,
+    "false_alert_unit": "unique Asia/Kolkata target date with at least one unmatched district alert",
+    "bootstrap": {
+      "unit": "district storm episode",
+      "replicates": 2000,
+      "confidence": 0.95,
+      "random_state": 42
+    },
+    "recall_at_10": {
+      "status": "weak_supporting_evidence",
+      "incident_dates": "seven dated records from 2022 through 2025",
+      "snapshot_rule": "latest configured run whose latency-adjusted issue time is no later than local incident-day start minus lead",
+      "cell_score": "maximum priority index over the incident local day from the frozen snapshot",
+      "tie_break": "priority index descending, grid_id ascending",
+      "tie_sensitivity": "report whether the incident cell lies in the score-tied boundary set"
+    }
+  },
+  "baseline": {
+    "name": "forecast_precipitation_threshold",
+    "precipitation_1h_mm": 20.0,
+    "precipitation_3h_mm": 60.0,
+    "slope_degrees": 15.0,
+    "same_monthly_false_alert_budget": 4
+  },
+  "claim_gate": {
+    "coverage_minimum": 0.95,
+    "episode_recall_lower_95_ci_minimum": 0.7,
+    "false_alert_days_maximum_per_full_monsoon_month": 4,
+    "require_positive_paired_recall_improvement_over_baseline": true,
+    "failure_text": "lead time not established"
+  },
+  "cache": {
+    "directory": "data/raw/forecast_cache",
+    "single_run_batch_points": 19,
+    "minimum_seconds_between_requests": 2.1,
+    "maximum_single_run_network_requests_per_invocation": 250,
+    "resume": true,
+    "metadata": [
+      "request_url",
+      "response_sha256",
+      "retrieved_at_utc"
+    ]
+  },
+  "frozen_calibration": {
+    "calibration_year": 2024,
+    "threshold_by_latency_hours": {
+      "7": 1.0,
+      "5": 1.0,
+      "9": 1.0
+    },
+    "one_threshold_across_leads": true,
+    "test_data_used": false,
+    "frozen_at": "2026-09-18T07:46:29.465932+00:00"
+  }
+}

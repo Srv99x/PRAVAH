@@ -1,0 +1,2537 @@
+{
+  "status": "complete",
+  "generated_at_utc": "2026-09-18T08:00:09.988708+00:00",
+  "commit": "cf9772c3b4b3aa00ed35e1a55767d0a5d0dbe87f",
+  "python": "3.12.10",
+  "sklearn": "1.8.0",
+  "initial_config_sha256": "87d96fc8d638c2ae3e28750be6cdce2f6b5369b6a7bd38c45b1f609fdafd1018",
+  "frozen_config_sha256": "b5d382cc178c50c7106e242013fecd9ce0fe82b5e95752c0c2a2ae5fb62f9c3f",
+  "primary_latency_hours": 7,
+  "archive_disclosure": "Open-Meteo describes the pre-operational ECMWF IFS Cycle 49R1 portion as hindcasts. This evaluation does not establish historical API availability.",
+  "test_reuse_disclosure": "The 2025 period was previously evaluated using ERA5-domain inputs and is therefore a reused test period, not a pristine confirmatory test.",
+  "issue_time_definition": "issue_time = run_initialisation_time + latency; valid_time = issue_time + lead",
+  "training": {
+    "algorithm": "RandomForestClassifier",
+    "features": [
+      "soil_moisture_0_7",
+      "soil_moisture_7_28",
+      "temp_c",
+      "api_3d",
+      "api_7d"
+    ],
+    "n_rows": 21725,
+    "n_positive": 1975,
+    "n_negative": 19750,
+    "training_start": "2018-01-01",
+    "training_end": "2023-12-31",
+    "random_state": 42,
+    "forbidden_pickle_loaded": false,
+    "fitted_model_sha256": "26af4ceb8f707d0e71707b4243f6628b04895fe175d073bc7744aff21f687c47"
+  },
+  "archive_coverage": {
+    "single_runs_loaded": 751,
+    "single_runs_expected": 756,
+    "single_run_failures": [
+      {
+        "run": "2025-08-05T00:00:00+00:00",
+        "error": "Unexpected error while streaming data: modelRunUnavailable(model: App.DomainRegistry.ecmwf_ifs, run: OmTime.Timestamp(timeIntervalSince1970: 1754352000))"
+      },
+      {
+        "run": "2025-08-06T00:00:00+00:00",
+        "error": "Unexpected error while streaming data: modelRunUnavailable(model: App.DomainRegistry.ecmwf_ifs, run: OmTime.Timestamp(timeIntervalSince1970: 1754438400))"
+      },
+      {
+        "run": "2025-08-08T00:00:00+00:00",
+        "error": "Unexpected error while streaming data: modelRunUnavailable(model: App.DomainRegistry.ecmwf_ifs, run: OmTime.Timestamp(timeIntervalSince1970: 1754611200))"
+      },
+      {
+        "run": "2025-08-08T12:00:00+00:00",
+        "error": "Unexpected error while streaming data: modelRunUnavailable(model: App.DomainRegistry.ecmwf_ifs, run: OmTime.Timestamp(timeIntervalSince1970: 1754654400))"
+      },
+      {
+        "run": "2025-08-09T00:00:00+00:00",
+        "error": "Unexpected error while streaming data: modelRunUnavailable(model: App.DomainRegistry.ecmwf_ifs, run: OmTime.Timestamp(timeIntervalSince1970: 1754697600))"
+      }
+    ],
+    "historical_forecast_rows": 177840,
+    "cache_hits": 695,
+    "network_requests": 63
+  },
+  "reference": {
+    "episodes_2024": 12,
+    "episodes_2025": 5,
+    "definition": "first positive hour and slope-eligible cells positive at onset",
+    "time_alignment": "A forecast valid time on an IST half-hour is verified against the preceding whole IST reference hour."
+  },
+  "calibration": {
+    "7": {
+      "threshold": 1.0,
+      "pooled_episode_recall": 0.0,
+      "hits": 0,
+      "events": 36,
+      "false_alert_days_by_lead": {
+        "6": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "12": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "24": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        }
+      },
+      "budget_ok": true,
+      "total_false_alert_days": 0,
+      "candidate_count": 137,
+      "reused_previously_frozen_threshold": false
+    },
+    "5": {
+      "threshold": 1.0,
+      "pooled_episode_recall": 0.0,
+      "hits": 0,
+      "events": 36,
+      "false_alert_days_by_lead": {
+        "6": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "12": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "24": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        }
+      },
+      "budget_ok": true,
+      "total_false_alert_days": 0,
+      "candidate_count": 125,
+      "reused_previously_frozen_threshold": false
+    },
+    "9": {
+      "threshold": 1.0,
+      "pooled_episode_recall": 0.0,
+      "hits": 0,
+      "events": 36,
+      "false_alert_days_by_lead": {
+        "6": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "12": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 0,
+          "2024-09": 0,
+          "2024-10": 0
+        },
+        "24": {
+          "2024-05": 0,
+          "2024-06": 0,
+          "2024-07": 0,
+          "2024-08": 1,
+          "2024-09": 0,
+          "2024-10": 0
+        }
+      },
+      "budget_ok": true,
+      "total_false_alert_days": 1,
+      "candidate_count": 125,
+      "reused_previously_frozen_threshold": false
+    }
+  },
+  "test": {
+    "7": {
+      "6": {
+        "lead_hours": 6,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 1,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T01:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 15.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T13:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 11.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-20T01:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 11.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T01:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 14.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-24T01:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 11.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "12": {
+        "lead_hours": 12,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 15.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 23.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-19T19:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 23.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 14.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-23T19:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 23.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "24": {
+        "lead_hours": 24,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 1,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 27.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 35.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-19T19:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 35.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T07:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 26.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-23T19:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 35.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      }
+    },
+    "5": {
+      "6": {
+        "lead_hours": 6,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 1,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-29T23:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 17.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T11:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-19T23:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-25T23:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 16.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-23T23:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "12": {
+        "lead_hours": 12,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 17.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T17:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-20T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 16.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-24T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "24": {
+        "lead_hours": 24,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 29.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T17:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 25.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-20T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 25.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 28.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-24T05:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 25.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      }
+    },
+    "9": {
+      "6": {
+        "lead_hours": 6,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 1,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T03:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T15:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 9.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-20T03:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 9.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T03:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 12.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-24T03:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 9.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "12": {
+        "lead_hours": 12,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 13.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 21.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-19T21:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 21.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 12.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-23T21:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 21.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      },
+      "24": {
+        "lead_hours": 24,
+        "threshold": 1.0,
+        "coverage": 0.970108695652174,
+        "coverage_rows": {
+          "available": 6783,
+          "expected": 6992
+        },
+        "reference_episodes_in_year": 5,
+        "episodes_assigned_to_alert_window": 5,
+        "unassigned_episodes_counted_as_misses": 0,
+        "episode_recall": 0.0,
+        "episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "coverage_conditional_episode_recall": 0.0,
+        "coverage_conditional_episode_count": 5,
+        "baseline_episode_recall": 0.0,
+        "baseline_episode_recall_95_ci": [
+          0.0,
+          0.0
+        ],
+        "paired_recall_improvement": 0.0,
+        "paired_recall_improvement_95_ci": [
+          0.0,
+          0.0
+        ],
+        "model_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "baseline_false_alert_days_by_month": {
+          "2025-05": 0,
+          "2025-06": 1,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0
+        },
+        "month_coverage": {
+          "2025-05": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-06": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-07": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          },
+          "2025-08": {
+            "scheduled_targets": 62,
+            "complete_targets": 51,
+            "fully_evaluated": false
+          },
+          "2025-09": {
+            "scheduled_targets": 60,
+            "complete_targets": 60,
+            "fully_evaluated": true
+          },
+          "2025-10": {
+            "scheduled_targets": 62,
+            "complete_targets": 62,
+            "fully_evaluated": true
+          }
+        },
+        "fully_evaluated_months": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-09",
+          "2025-10"
+        ],
+        "baseline_within_alert_budget": true,
+        "gate_components": {
+          "coverage": true,
+          "episode_recall_lower_95_ci": false,
+          "false_alert_days": true,
+          "positive_paired_recall_improvement_over_baseline": false
+        },
+        "gate_passed": false,
+        "claim": "lead time not established",
+        "episode_results": [
+          {
+            "episode_id": "E0013",
+            "onset_time_utc": "2025-05-30T10:00:00+00:00",
+            "assigned_target_time_utc": "2025-05-30T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 25.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0014",
+            "onset_time_utc": "2025-07-02T18:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-02T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 33.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0015",
+            "onset_time_utc": "2025-07-20T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-19T21:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 33.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0016",
+            "onset_time_utc": "2025-07-26T09:00:00+00:00",
+            "assigned_target_time_utc": "2025-07-26T09:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 24.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          },
+          {
+            "episode_id": "E0017",
+            "onset_time_utc": "2025-08-24T06:00:00+00:00",
+            "assigned_target_time_utc": "2025-08-23T21:00:00+00:00",
+            "actual_issue_to_onset_lead_hours": 33.0,
+            "forecast_complete": true,
+            "model_hit": false,
+            "baseline_hit": false
+          }
+        ]
+      }
+    }
+  },
+  "recall_at_10": {
+    "7": {
+      "6": {
+        "label": "weak supporting evidence",
+        "lead_hours": 6,
+        "latency_hours": 7,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-28T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T12:30:00+00:00",
+            "priority_index": 0.7392038020932215,
+            "deterministic_rank": 137,
+            "top10_cutoff_priority_index": 0.8789655750165264,
+            "boundary_tie_cell_count": 61
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-29T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-29T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T12:30:00+00:00",
+            "priority_index": 0.9196774193548387,
+            "deterministic_rank": 55,
+            "top10_cutoff_priority_index": 0.9397562338560236,
+            "boundary_tie_cell_count": 35
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-06T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-06T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T12:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 91,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      },
+      "12": {
+        "label": "weak supporting evidence",
+        "lead_hours": 12,
+        "latency_hours": 7,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-27T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-27T19:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T06:30:00+00:00",
+            "priority_index": 0.02,
+            "deterministic_rank": 484,
+            "top10_cutoff_priority_index": 0.06,
+            "boundary_tie_cell_count": 75
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-28T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-28T19:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T06:30:00+00:00",
+            "priority_index": 0.95990990990991,
+            "deterministic_rank": 137,
+            "top10_cutoff_priority_index": 0.9899099099099099,
+            "boundary_tie_cell_count": 49
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-05T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-05T19:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T06:30:00+00:00",
+            "priority_index": 0.02,
+            "deterministic_rank": 140,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 69
+          }
+        ]
+      },
+      "24": {
+        "label": "weak supporting evidence",
+        "lead_hours": 24,
+        "latency_hours": 7,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-27T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-27T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-27T18:30:00+00:00",
+            "priority_index": 0.05,
+            "deterministic_rank": 406,
+            "top10_cutoff_priority_index": 0.6098765432098765,
+            "boundary_tie_cell_count": 29
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-28T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-28T18:30:00+00:00",
+            "priority_index": 0.8697459754836805,
+            "deterministic_rank": 253,
+            "top10_cutoff_priority_index": 0.9785368612791123,
+            "boundary_tie_cell_count": 69
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-05T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-05T07:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-05T18:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 22,
+            "top10_cutoff_priority_index": 0.04,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      }
+    },
+    "5": {
+      "6": {
+        "label": "weak supporting evidence",
+        "lead_hours": 6,
+        "latency_hours": 5,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-28T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T12:30:00+00:00",
+            "priority_index": 0.6894444853230353,
+            "deterministic_rank": 280,
+            "top10_cutoff_priority_index": 0.8788754849264362,
+            "boundary_tie_cell_count": 61
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-29T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-29T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T12:30:00+00:00",
+            "priority_index": 0.9196774193548387,
+            "deterministic_rank": 55,
+            "top10_cutoff_priority_index": 0.9397562338560236,
+            "boundary_tie_cell_count": 35
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-06T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-06T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T12:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 91,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      },
+      "12": {
+        "label": "weak supporting evidence",
+        "lead_hours": 12,
+        "latency_hours": 5,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-28T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T06:30:00+00:00",
+            "priority_index": 0.6894444853230353,
+            "deterministic_rank": 280,
+            "top10_cutoff_priority_index": 0.8788754849264363,
+            "boundary_tie_cell_count": 61
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-29T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-29T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T06:30:00+00:00",
+            "priority_index": 0.9196774193548387,
+            "deterministic_rank": 55,
+            "top10_cutoff_priority_index": 0.9397562338560236,
+            "boundary_tie_cell_count": 35
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-06T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-06T05:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T06:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 91,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      },
+      "24": {
+        "label": "weak supporting evidence",
+        "lead_hours": 24,
+        "latency_hours": 5,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-27T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-27T17:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-27T18:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 759,
+            "top10_cutoff_priority_index": 0.06,
+            "boundary_tie_cell_count": 18
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-28T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-28T17:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-28T18:30:00+00:00",
+            "priority_index": 0.95990990990991,
+            "deterministic_rank": 137,
+            "top10_cutoff_priority_index": 0.9899099099099099,
+            "boundary_tie_cell_count": 49
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-05T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-05T17:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-05T18:30:00+00:00",
+            "priority_index": 0.02,
+            "deterministic_rank": 140,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 69
+          }
+        ]
+      }
+    },
+    "9": {
+      "6": {
+        "label": "weak supporting evidence",
+        "lead_hours": 6,
+        "latency_hours": 9,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-28T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T12:30:00+00:00",
+            "priority_index": 0.7392038020932215,
+            "deterministic_rank": 137,
+            "top10_cutoff_priority_index": 0.8169255425757221,
+            "boundary_tie_cell_count": 18
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-29T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-29T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T12:30:00+00:00",
+            "priority_index": 0.9196774193548387,
+            "deterministic_rank": 55,
+            "top10_cutoff_priority_index": 0.9397562338560236,
+            "boundary_tie_cell_count": 35
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-06T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-06T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T12:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 91,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      },
+      "12": {
+        "label": "weak supporting evidence",
+        "lead_hours": 12,
+        "latency_hours": 9,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-27T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-27T21:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-28T06:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 768,
+            "top10_cutoff_priority_index": 0.06,
+            "boundary_tie_cell_count": 75
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-28T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-28T21:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-29T06:30:00+00:00",
+            "priority_index": 0.95990990990991,
+            "deterministic_rank": 137,
+            "top10_cutoff_priority_index": 0.9899099099099099,
+            "boundary_tie_cell_count": 49
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-05T12:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-05T21:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-06T06:30:00+00:00",
+            "priority_index": 0.02,
+            "deterministic_rank": 140,
+            "top10_cutoff_priority_index": 0.03,
+            "boundary_tie_cell_count": 69
+          }
+        ]
+      },
+      "24": {
+        "label": "weak supporting evidence",
+        "lead_hours": 24,
+        "latency_hours": 9,
+        "total_incident_days": 7,
+        "available_incident_days": 3,
+        "unavailable_incident_days": 4,
+        "deterministic_recall_at_10_all_seven": 0.0,
+        "deterministic_recall_at_10_available_only": 0.0,
+        "optimistic_boundary_tie_recall_all_seven": 0.0,
+        "tie_break": "priority index descending, grid_id ascending",
+        "note": "The model has weather-point features, so many cells tie. The optimistic tie value counts an incident cell if it could enter the top ten under some ordering of the cutoff-score tie. Four of seven incident dates predate this archive window.",
+        "incidents": [
+          {
+            "date": "2022-06-14",
+            "location": "Nijarapar/Boragaon",
+            "mapped_grid_id": "KM_R013_C004",
+            "mapping_distance_m": 498.0916508712578,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-19",
+            "location": "Zoo Road/Nabin Nagar/Anil Nagar/Hatigaon",
+            "mapped_grid_id": "KM_R016_C013",
+            "mapping_distance_m": 555.5325970273924,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2022-06-30",
+            "location": "Noonmati",
+            "mapped_grid_id": "KM_R020_C016",
+            "mapping_distance_m": 578.192635505215,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2023-06-17",
+            "location": "Dhirenpara",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 569.9022337816285,
+            "status": "unavailable",
+            "reason": "incident predates the Single Runs archive evaluation window",
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false
+          },
+          {
+            "date": "2024-05-29",
+            "location": "Krishnanagar/Lal Ganesh",
+            "mapped_grid_id": "KM_R017_C008",
+            "mapping_distance_m": 662.2629347401756,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2024-05-27T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2024-05-27T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2024-05-27T18:30:00+00:00",
+            "priority_index": 0.05,
+            "deterministic_rank": 406,
+            "top10_cutoff_priority_index": 0.6098765432098765,
+            "boundary_tie_cell_count": 29
+          },
+          {
+            "date": "2025-05-30",
+            "location": "Kamrup Metro/Bonda",
+            "mapped_grid_id": "KM_R020_C018",
+            "mapping_distance_m": 536.8925672875715,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-05-28T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-05-28T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-05-28T18:30:00+00:00",
+            "priority_index": 0.8697459754836805,
+            "deterministic_rank": 253,
+            "top10_cutoff_priority_index": 0.9785368612791123,
+            "boundary_tie_cell_count": 69
+          },
+          {
+            "date": "2025-06-07",
+            "location": "Rupnagar",
+            "mapped_grid_id": "KM_R018_C012",
+            "mapping_distance_m": 88.27666152596005,
+            "status": "available",
+            "reason": null,
+            "hit_deterministic_top10": false,
+            "hit_under_any_boundary_tie": false,
+            "hit_under_all_boundary_ties": false,
+            "snapshot_run_initialisation_utc": "2025-06-05T00:00:00+00:00",
+            "snapshot_issue_time_utc": "2025-06-05T09:00:00+00:00",
+            "snapshot_cutoff_utc": "2025-06-05T18:30:00+00:00",
+            "priority_index": 0.01,
+            "deterministic_rank": 22,
+            "top10_cutoff_priority_index": 0.04,
+            "boundary_tie_cell_count": 18
+          }
+        ]
+      }
+    }
+  },
+  "leakage_tests": [
+    {
+      "name": "as_of_future_mutation",
+      "status": "passed",
+      "detail": "Changing Historical Forecast values after issue time cannot change features."
+    },
+    {
+      "name": "exact_lead",
+      "status": "passed",
+      "detail": "Valid time equals latency-adjusted issue time plus the requested lead."
+    },
+    {
+      "name": "run_availability",
+      "status": "passed",
+      "detail": "A run is used only at its preregistered initialization-plus-latency issue time."
+    },
+    {
+      "name": "complete_window",
+      "status": "passed",
+      "detail": "A null inside the 168-hour hybrid window makes the feature row unavailable."
+    },
+    {
+      "name": "unused_run_start_null",
+      "status": "passed",
+      "detail": "A null outside the selected future segment does not contaminate the window."
+    },
+    {
+      "name": "used_forecast_null",
+      "status": "passed",
+      "detail": "A null in the selected run segment is rejected rather than zero-filled."
+    },
+    {
+      "name": "temporal_partitions",
+      "status": "passed",
+      "detail": "Training, calibration, and test periods are chronological and disjoint."
+    },
+    {
+      "name": "forecast_feature_source",
+      "status": "passed",
+      "detail": "The frozen contract forbids ERA5 in all forecast-time features."
+    },
+    {
+      "name": "forbidden_pickle",
+      "status": "passed",
+      "detail": "The evaluation trains a fresh model and never opens the forbidden pickle."
+    },
+    {
+      "name": "threshold_frozen_before_test",
+      "status": "passed",
+      "detail": "The 2024-selected threshold was written to the frozen config before 2025 scoring."
+    },
+    {
+      "name": "episode_partition_isolation",
+      "status": "passed",
+      "detail": "No district reference episode identifier appears in both 2024 and 2025."
+    },
+    {
+      "name": "frozen_model_state",
+      "status": "passed",
+      "detail": "The fitted RandomForest state hash is unchanged from before test scoring."
+    },
+    {
+      "name": "incident_snapshot_cutoff",
+      "status": "passed",
+      "detail": "Every available Recall@10 snapshot issue time is at or before local day start minus lead."
+    }
+  ],
+  "claim_scope": "A passing lead establishes retrospective rainfall-threshold-event skill under the assumed latency. It does not establish an operational historical forecast or a landslide-warning probability."
+}

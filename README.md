@@ -45,6 +45,13 @@ validated early warning. The priority index is ordinal. Missing or stale inputs
 must not be read as low priority. PRAVAH has **no validated evacuation lead time**;
 incident results are reported separately from rainfall-threshold proxy results.
 
+The existing [ECMWF retrospective backtest](docs/forecast_backtest.md) and
+[exploratory diagnostics](docs/forecast_diagnostics.md) are preserved with the
+[backtest](scripts/forecast_backtest.py) and
+[diagnostic](scripts/forecast_diagnostics.py) scripts and the
+[frozen configuration](docs/forecast_config.json). They do not establish a
+validated evacuation lead time.
+
 ## Run locally
 
 From the repository root, install `requirements.txt` in the project virtual environment,
