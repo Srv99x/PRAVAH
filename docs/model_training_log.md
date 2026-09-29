@@ -4,6 +4,11 @@
 **Script:** `app/train_trigger_model.py` (rerun it to reproduce exactly)
 **Seed:** `42` (numpy RNG, StratifiedGroupKFold, and both models)
 
+**Historical log:** The multiplier-based display discussed below was superseded
+by the shipped decision matrix in [`docs/priority_matrix.md`](priority_matrix.md).
+The listed hazard sites were compiled from news reports with per-row sources;
+they are not an official ASDMA list.
+
 > **Superseded numbers.** An earlier run reported PR-AUC figures for
 > RandomForest and XGBoost that were produced by training code which was
 > never saved to a file and cannot be reproduced. Those figures are void
@@ -15,7 +20,7 @@
 > overstate precision while understating recall relative to the 5-fold
 > mean. The only citable metrics are in
 > [`docs/evaluation_cv.json`](evaluation_cv.json), produced by
-> `python app/evaluate_trigger_cv.py`, which reruns this same leak-safe
+> `python app/evaluate_trigger_cv.py`, which reruns this same
 > training set through 5-fold `StratifiedGroupKFold` plus forward-in-time
 > (2024, 2025) checks. Summary: RandomForest PR-AUC 0.798 ± 0.086 /
 > F1-macro 0.813 ± 0.061; XGBoost PR-AUC 0.792 ± 0.095 / F1-macro
@@ -23,7 +28,9 @@
 
 ---
 
-## 1. Features (leak-safe — 5 columns)
+## 1. Features (5 columns)
+
+No terrain/label-field leakage and no storm-episode leakage across folds; the rainfall features include the current hour, so the trigger is a same-storm nowcast and most labels are rainfall-threshold proxies (disclosed).
 
 ```
 soil_moisture_0_7
@@ -50,7 +57,7 @@ equals exactly the list above, so the leak cannot silently return.
 Rainfall threshold: `precip_1hr >= 20 mm` OR
 `precip_3hr >= 60 mm`, AND `slope_mean >= 15°`
 (Dikshit & Satyam 2019, Kalimpong — see `app/labelling.py`).
-Cells containing a listed hazard site (news and official sources, per-row
+Cells containing a listed hazard site (news reports, per-row
 source in `data/raw/asdma_vulnerable_locations.csv`) bypass the slope
 filter; dated incidents are marked positive for all 24 hours of the
 incident date.
@@ -340,17 +347,16 @@ sees susceptibility, listed-hazard-site membership, slope, or elevation.
 Changing the multipliers or the floor changes the rendered map and changes
 nothing about the reported metrics.
 
-**What it does mean, and what must be disclosed:** a cell can display high risk
-because it contains a listed hazard site (news and official sources, per-row
+**What it does mean, and what must be disclosed:** a cell can display high priority
+because it contains a listed hazard site (news reports, per-row
 source in `data/raw/asdma_vulnerable_locations.csv`), not because the model
 or the DEM inferred it. That is stated in the Streamlit sidebar under
 "How to read this map" and in the map caption. It is not buried.
 
-The defensible framing: the system combines a *learned dynamic trigger* with a
-*static hazard layer built from official government hazard identification plus
-terrain*. That is how operational early-warning systems are normally built —
-the objection would be if we claimed the model discovered these locations. We
-do not.
+The defensible framing: the system combines a *learned dynamic trigger* with
+terrain-derived susceptibility informed by news-compiled hazard sites. The
+model did not discover these locations, and the list is not an official
+government inventory.
 
 ### 8.4 Dated-incident validation claim (checked, not assumed)
 
@@ -371,7 +377,7 @@ cells** (`KM_R013_C004`, `KM_R017_C008`, `KM_R018_C012`, `KM_R020_C016`,
 
 > All 6 grid cells containing a documented landslide or flood incident —
 > including all 5 cells where a fatal landslide occurred — were already
-> among the listed hazard sites (news and official sources, per-row source
+> among the listed hazard sites (news reports, per-row source
 > in `data/raw/asdma_vulnerable_locations.csv`).
 
 Note `KM_R017_C008` alone hosted three separate documented incidents

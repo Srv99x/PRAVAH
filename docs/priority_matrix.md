@@ -53,7 +53,7 @@ Cells: 904 in the grid, 811 with a susceptibility class (351 Low, 274 Moderate, 
 
 **Rule:** among candidate cuts [2, 3, 4] (priority levels), pick the one with the highest episode recall subject to a median review queue <= 30 cells per alert day; on a recall tie take the higher cut (smaller queue); if no cut meets the limit take the strictest.
 
-**Leak safety.** Same 5 episode-grouped folds as `app/evaluate_trigger_cv.py`. In each outer fold the trigger model is re-trained on the training episodes only, the training episodes are scored out-of-fold by an inner 4-fold split (no model scores hours from an episode it trained on), and the cut is chosen from those scores. The held-out fold is scored by the outer model and used only to report. The cached production model is not used here because it was trained on most of these episodes.
+**Episode split and cut selection.** Same 5 episode-grouped folds as `app/evaluate_trigger_cv.py`. In each outer fold the trigger model is re-trained on the training episodes only, the training episodes are scored out-of-fold by an inner 4-fold split (no model scores hours from an episode it trained on), and the cut is chosen from those scores. The held-out fold is scored by the outer model and used only to report. The cached production model is not used here because it was trained on most of these episodes.
 
 **Episode recall.** 63 episodes contain at least one positive label (55 storm episodes, 8 quiet-interval verified incidents). An episode is caught if at least one of its positive cells has priority >= cut on the day of the positive.
 
